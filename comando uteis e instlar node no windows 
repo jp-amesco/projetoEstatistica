@@ -1,0 +1,51 @@
+Para instalar o node acesse:
+
+https://github.com/coreybutler/nvm-windows
+
+encontre "Download the latest installer from the releases.", baixe e instale o nvm.
+
+Após a instalação abra o power shell ou o cmd e execute o comando "nvm -version", deve retornar a versão do nvm, se não retornar algo deu errado na instalação.
+
+Certificado que tudo tenha ocorrido bem até aqui, execute o comando 'nvm install latest', irá instalar o node e o npm.
+Após a instalação execute nvm use v10.8.0.
+Execute 'node -v' e depois 'npm -v' para verificar a versão, deverá ser: node= v10.8.0 e npm= 6.4.0 ou 6.3.*
+
+Para instalar o git:
+
+https://gitforwindows.org/ baixe e instale.
+Após instalar procure o terminal deve chamar gitbash.
+
+Para clonar o repositório:
+
+Crie uma pasta no seu local de preferencia com o nome 'projetoEstatistica, abra a pasta, em qualquer lugar dentro dela aperte 'shift + botão direito do mouse' e escolha a opção do terminal do git.
+
+ao abrir execute:
+
+git clone https://github.com/jp-amesco/projetoEstatistica.git
+
+após o processo execute:
+
+nvm use v10.8.0,
+npm install,
+e aguarde o processo terminar.
+
+Pronto ja pode começar a trabalhar seu animal.
+
+COMANDO UTEIS:
+((((EXECUTE O GIT PULL SEMPRE QUE FOR FAZER ALGO PARA BAIXAR AS MUDANÇÃS FEITAS PELO RESTO DO GRUPO))))
+GIT PULL
+GIT STATUS
+(((AQUI VOCE COMEÇA A TRABALHAR)))
+GIT STATUS
+((((VAI ESTAR TUDO VERMELHO, OS NOMES DOS ARQUIVOS QUE VC MODIFICOU, DELETOU OU CRIOU))))
+GIT ADD 'nome do arquivo caso queira apenas um' ou GIT ADD . 'com o . ele adiciona todos os arquivos para upload'
+((((VAI FICAR VERDE TODOS OS ARQUIVOS QUE VC ADICIONOU))))
+GIT COMMIT -M 'FIRST COMMIT' (ENTRE AS ASPAS DIGITE UM COMENTARIO E DESCREVA QUAL FORAM SUAS ALTERAÇÕES)
+GIT STATUS
+((((TODOS OS ARQUIVOS QUE ESTAVAM VERDES SUMIRAM POIS JA FORAM COMENTADOS))))
+GIT PUSH
+((((IRÁ SUBIR PARA O REPOSITÓRIO TODOS OS ARQUIVOS QUE FORAM COMENTADOS))))
+
+SOBRE OS TESTE EXPLICOU DEPOIS
+QUALQUER DUVIDA LIGUE PARA 0800 900 8003(ZUEIRA KRL) OU FALE COMIGO.
+
