@@ -4,10 +4,10 @@ https://github.com/coreybutler/nvm-windows
 
 encontre "Download the latest installer from the releases.", baixe e instale o nvm.
 
-Após a instalação abra o power shell ou o cmd e execute o comando "nvm -version", deve retornar a versão do nvm, se não retornar algo deu errado na instalação.
+Após a instalação abra o power shell ou o cmd e execute o comando "nvm --version", deve retornar a versão do nvm, se não retornar algo deu errado na instalação.
 
 Certificado que tudo tenha ocorrido bem até aqui, execute o comando 'nvm install latest', irá instalar o node e o npm.
-Após a instalação execute nvm use v10.8.0.
+Após a instalação execute 'nvm use v10.8.0'.
 Execute 'node -v' e depois 'npm -v' para verificar a versão, deverá ser: node= v10.8.0 e npm= 6.4.0 ou 6.3.*
 
 Para instalar o git:
@@ -21,9 +21,9 @@ Crie uma pasta no seu local de preferencia com o nome 'projetoEstatistica, abra 
 
 ao abrir execute:
 
-git clone https://github.com/jp-amesco/projetoEstatistica.git
+'git clone https://github.com/jp-amesco/projetoEstatistica.git'
 
-após o processo execute:
+após o processo execute no cmd:
 
 nvm use v10.8.0,
 npm install,
