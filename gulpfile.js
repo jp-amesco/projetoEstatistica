@@ -19,7 +19,7 @@ const jasmine = require('gulp-jasmine');
 });*/
 
 gulp.task('testes', function(){
-	return gulp.src('./testes/moda/modaQualitativa.js')
+	return gulp.src('./testes/entradaDados/**.js')
 		.pipe(jasmine()) 
 });
 

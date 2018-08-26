@@ -1,4 +1,4 @@
-const entradaDados = require('../../js/dados/entradaDados');
+const entradaDados = require('../../js/dados/entradaDados.js');
 
 it('espera-se que a função retorne um array', function(){
 	array = entradaDados.init();
