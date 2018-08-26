@@ -1,5 +1,5 @@
 //variavel que recebe a função a ser testada
-const organizacaoDados = require('../../arquivosUteis/gerarArrayAleatoria.js');
+const organizacaoDados = require('../../js/dados/organizacaoDados.js');
 
 //mensagem que aparecerá no console em caso de erro
 it('espera-se que a função retorne um array organizado por grupos ou ', function(){
