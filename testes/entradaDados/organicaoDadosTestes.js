@@ -2,7 +2,7 @@
 const organizacaoDados = require('../../js/dados/organizacaoDados.js');
 
 //mensagem que aparecerá no console em caso de erro
-it('espera-se que a função retorne um array organizado por grupos ou ', function(){
+it('espera-se que a função retorne um array organizado por grupos ou em ordem crescente', function(){
 	//array passado para ser organizado
 	dados = [3, 2, 1];
 	//array organizado para comparação
@@ -13,6 +13,19 @@ it('espera-se que a função retorne um array organizado por grupos ou ', functi
 	verificado = equivalente(array, resposta)
 	//variavel a ser testada, valor esperado
 	expect(verificado).toBe(true);
+});
+
+it('espera-se que a função retorna um array organizado recenbendo variavel qualitativa', function(){
+    //array passado para ser organizado
+    dados = ['M', 'F', 'M', 'F', 'F', 'F', 'M'];
+    //array organizado para comparação
+    resposta = ['F', 'F', 'F', 'F', 'M', 'M', 'M'];
+    //resposta da função que organiza o array
+    array = organizacaoDados.init(dados);
+    //recebe a resposta da função de verificação, pois para comparar objeto não basta simplesmente colocar '==' ou '===', ambos retorna false
+    verificado = equivalente(array, resposta)
+    //variavel a ser testada, valor esperado
+    expect(verificado).toBe(true);
 });
 
 //função que verifica se os dados são equivalentes
