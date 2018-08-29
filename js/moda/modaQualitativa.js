@@ -1,8 +1,4 @@
-function moda(){
-	const dados = [
-					'EF', 'EF', 'EF', 'EM', 'EM', 'EM', 'EM', 'EM', 'EM', 'EM', 
-				   	'EM', 'ES', 'ES', 'ES', 'ES', 'ES', 'ES', 'PG', 'PG', 'PG'
-				   ];
+function moda(dados){
 	const quantDados = [];
 	const arrayCont = [];
 	let cont = 0;
@@ -31,5 +27,4 @@ function moda(){
 	return(quantDados[posicao]);
 }
 
-var teste = moda();
-console.log(teste);
+exports.init = moda;

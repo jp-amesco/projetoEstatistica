@@ -10,5 +10,5 @@ it('Espera-se que a função calcule a moda recebendo a variavel qualitativa', f
     ];
     resposta = 'EM';
 	array = modaQualitativa.init(dados);
-	expec(array).toBe(resposta);    
+	expect(array).toBe(resposta);    
 });
