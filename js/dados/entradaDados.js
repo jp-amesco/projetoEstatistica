@@ -1,15 +1,8 @@
-function addEvent(){
-  document.querySelector('.btn').addEventListener('click', function(){
-  	const teste = document.querySelector('#dados').value;
-  	recebeDados(teste);
-  });
-}
-
 function recebeDados(dados = null)
 {
   let string = 0;
   let number = 0;
-  if (dados == null) {
+  if (dados == null || dados.length == 0) {
   	return 'Insira algum dado';
   }
 
@@ -24,6 +17,7 @@ function recebeDados(dados = null)
   if(string > 0 && number > 0){
   	return 'Dados inválidos';
   }
+
   const array = Array.from(dados);
   return array;
 }

@@ -1,3 +1,6 @@
-const addEvent = require('./dados/entradaDados.js');
+const recebeDados = require('./dados/entradaDados.js');
 
-addEvent.init();
+document.querySelector('.btn').addEventListener('click', function(){
+  const  inputDados = document.querySelector('#dados').value;
+  const response = recebeDados.init(inputDados);
+});
