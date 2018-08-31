@@ -1,5 +1,5 @@
 const gulp = require('gulp');//biblioteca principal
-//const $ = require('gulp-load-plugins')();
+const $ = require('gulp-load-plugins')();
 const pug = require('gulp-pug');
 //const less = require('gulp-less');
 const aliasify = require('aliasify');
@@ -29,13 +29,13 @@ gulp.task('testes', function(){
 gulp.task('js', function(){
 	//arquivo que é executado
 	return gulp.src('js/app.js')
-		/*.pipe($.bro({
+		.pipe($.bro({
 	      transform: [
 	        [eslintify, {'quiet-ignored': true}], babelify
 	      ],
 	      error: $.notify.onError('Error: <%= error.message %>'),
 	      debug: true
-	    }))*/
+	    }))
 		.pipe(sourcemaps.init())//biblioteca para facilitar o debug pelo navegador
 		.pipe(concat('app.min.js'))//minifica o arquivo executado e cria um novo
 		.pipe(uglify())
