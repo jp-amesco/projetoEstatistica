@@ -2,24 +2,24 @@ function recebeDados(dados = null)
 {
   let string = 0;
   let number = 0;
-  if (dados == null || dados.length == 0) {
-  	return 'Insira algum dado';
+  if (dados == null || dados.length <= 1) {
+    return 'Quantidade de dados insuficiente para os cálculos';
   }
+  const newDados = dados.split(',');
 
-  for (let i = 0; i < dados.length; i++) {
-  	if (isNaN(dados[i])) {
+  for (let i = 0; i < newDados.length; i++) {
+  	if (isNaN(newDados[i])) {
   		string++;
   	}
-  	if (!isNaN(dados[i])) {
+  	if (!isNaN(newDados[i])) {
   		number++;
+    newDados[i] = parseInt(newDados[i]);
   	}
   }
   if(string > 0 && number > 0){
   	return 'Dados inválidos';
   }
-
-  const array = Array.from(dados);
-  return array;
+  return newDados;
 }
 
 exports.init = recebeDados;
