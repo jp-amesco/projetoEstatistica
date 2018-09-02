@@ -1,5 +1,6 @@
 //variavel que recebe a função a ser testada
 const entradaDados = require('../../js/dados/entradaDados.js');
+const equivalente = require('../comparaVetor.js');
 
 //mensagem que aparecerá no console em caso de erro
 it('espera-se que a função retorne um array', function(){
@@ -33,8 +34,8 @@ it('espera-se que a função separe por virgula os dados informado pelo usuario'
 	dados = "12,4,5,3,1,2";
 	arrayResponse = [12, 4, 5, 3, 1, 2]
 	response = entradaDados.init(dados);
-	equivalente = equivalente(arrayResponse, response);
-	expect(equivalente).toBe(true);
+	responseEqui = equivalente.init(arrayResponse, response);
+	expect(responseEqui).toBe(true);
 });
 
 it('espera-se que a função retorne mensagem de erro caso o usuario forneça apenas um dado para os cálculos', function(){
@@ -42,27 +43,3 @@ it('espera-se que a função retorne mensagem de erro caso o usuario forneça ap
 	response = entradaDados.init(dados);
 	expect(response).toBe('Quantidade de dados insuficiente para os cálculos');
 });
-
-//função que verifica se os dados são equivalentes
-function equivalente(a, b) {
-    var aProps = Object.getOwnPropertyNames(a);
-    var bProps = Object.getOwnPropertyNames(b);
-
-    //testa o tamanho dos objetos recebidos
-    if (aProps.length != bProps.length) {
-    	//se forem diferentes, retorna false
-        return false;
-    }
-
-    //verifica todos os elementos do objeto
-    for (var i = 0; i < aProps.length; i++) {
-        var propName = aProps[i];
-
-        //se algum for diferente retorna false
-        if (a[propName] !== b[propName]) {
-            return false;
-        }
-    }
-    //se forem iguais retorna true
-    return true;
-}
