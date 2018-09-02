@@ -3,7 +3,7 @@ const organizacaoDados = require('../../js/dados/organizacaoDados.js');
 const equivalente = require('../comparaVetor.js');
 
 //mensagem que aparecerá no console em caso de erro
-it('espera-se que a função retorne um array organizado por grupos ou em ordem crescente', function(){
+it('espera-se que a função retorne um array organizado por grupos ou em ordem crescente (ORGANIZA_DADOS)', function(){
 	//array passado para ser organizado
 	dados = [3, 2, 1];
 	//array organizado para comparação
@@ -16,7 +16,7 @@ it('espera-se que a função retorne um array organizado por grupos ou em ordem 
 	expect(verificado).toBe(true);
 });
 
-it('espera-se que a função retorna um array organizado recenbendo variavel qualitativa', function(){
+it('espera-se que a função retorna um array organizado recenbendo variavel qualitativa (ORGANIZA_DADOS)', function(){
     //array passado para ser organizado
     dados = ['M', 'F', 'M', 'F', 'F', 'F', 'M'];
     //array organizado para comparação
