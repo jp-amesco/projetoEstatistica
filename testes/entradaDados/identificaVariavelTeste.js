@@ -8,14 +8,18 @@ it('espera-se que a função retorne qualitativa caso os dados sejam todos strin
 
 it('espera-se que a função retorne quantitaiva discreta de os dados forem números com pouca variedade (IDENTIFICA_VARIAVEL)', function(){
   dados = [1, 2, 3, 1, 2, 6, 7, 9, 1, 2, 1, 2, 2, 2];
-  reponse = identificaVariavel.init(dados);
+  response = identificaVariavel.init(dados);
   expect(response).toBe('discreta');
 });
 
-it('espera-se que a função retorne quantitaiva continua se os dados forem números com muita variedade (IDENTIFICA_VARIAVEL)', function(){
+it('espera-se que a função retorne quantitativa continua se os dados forem números com muita variedade (IDENTIFICA_VARIAVEL)', function(){
   dados = [1, 2, 3, 1, 2, 5, 6, 12, 10, 23, 11, 98, 23, 87];
   response = identificaVariavel.init(dados);
   expect(response).toBe('continua');
 });
 
-
+it('espera-se que a função retorne pergunta se os dados tiverem de sete à dez variações (IDENTIFICA_VARIAVEL)', function(){
+  dados = [1, 2, 3, 1, 2, 5, 6, 12, 10, 23, 11, 98];
+  response = identificaVariavel.init(dados);
+  expect(response).toBe('pergunta');
+});
