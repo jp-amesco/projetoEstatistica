@@ -28,7 +28,7 @@ gulp.task('testes', function(){
 //tarefa que roda bibliotecas para o js
 gulp.task('js', function(){
 	//arquivo que é executado
-	return gulp.src('js/app.js')
+	return gulp.src('js/**/*.js')
 		.pipe($.bro({
 	      transform: [
 	        [eslintify, {'quiet-ignored': true}], babelify

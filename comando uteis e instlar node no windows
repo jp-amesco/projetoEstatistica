@@ -13,15 +13,16 @@ Execute 'node -v' e depois 'npm -v' para verificar a versão, deverá ser: node=
 Para instalar o git:
 
 https://gitforwindows.org/ baixe e instale.
-Após instalar procure o terminal deve chamar gitbash.
 
 Para clonar o repositório:
 
-Crie uma pasta no seu local de preferencia com o nome 'projetoEstatistica, abra a pasta, em qualquer lugar dentro dela aperte 'shift + botão direito do mouse' e escolha a opção do terminal do git.
+No local onde fincará seu projeto, aperte o botão direito e selecione a opção git bash here.
 
 ao abrir execute:
 
 'git clone https://github.com/jp-amesco/projetoEstatistica.git'
+após clonar executa o comando
+"cd proejetoEstatistica"
 
 após o processo execute no cmd:
 
