@@ -20,4 +20,4 @@ function identificaVariavel(dados){
   return 'continua';
 }
 
-exports.init = identificaVariavel
+exports.init = identificaVariavel;

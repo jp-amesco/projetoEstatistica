@@ -5,7 +5,9 @@ function recebeDados(dados = null)
   if (dados == null || dados.length <= 1) {
     return 'Quantidade de dados insuficiente para os cálculos';
   }
-  const newDados = dados.split(',');
+  const newDados = dados.split(',').map(function(item){
+    return item.trim();
+  });
 
   for (let i = 0; i < newDados.length; i++) {
   	if (isNaN(newDados[i])) {
