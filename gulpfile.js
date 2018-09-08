@@ -31,6 +31,8 @@ gulp.task('testes', function(){
     files = './testes/medidasSeparatrizes/discreta/**.js'
   }else if(argv.moda){
     files = './testes/moda/**.js'
+  }else if(argv.mediana){
+    files = './testes/mediana/**.js'
   }else{
     files = './testes/**/**.js'
   }

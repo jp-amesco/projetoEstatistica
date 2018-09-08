@@ -1,4 +1,4 @@
-const medianaQualitativa = require('../../js/media/medianaQualitativa.js');
+const medianaQualitativa = require('../../js/mediana/medianaQualitativa.js');
 const equivalente = require('../comparaVetor.js');
 
 it('espera-se que a função retorne a mediana da variavel qualitativa (MEDIANA_QUALITATIVA)', function(){

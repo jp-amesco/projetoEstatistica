@@ -1,4 +1,4 @@
-const medianaQuantitativaDiscreta = require('../../js/media/medianaQuantitativaDiscreta.js');
+const medianaQuantitativaDiscreta = require('../../js/mediana/medianaQuantitativaDiscreta.js');
 
 it('espera-se que a função retorne a mediana da variavel quantitativa discreta (MEDIANA_DISCRETA)', function(){
   dados = [
@@ -19,7 +19,7 @@ it('espera-se que a função retorne a mediana da variavel quantitativa discreta
 });
 
 it('espera-se que a função retorne a mediana da variavel quantitativa discreta se a quantidade de elementos for impar (MEDIANA_DISCRETA)', function(){
-  ddados = [
+  dados = [
     2, 2, 2, 4, 4, 4, 4, 4, 5, 5, 5, 5,
     7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 10
   ];

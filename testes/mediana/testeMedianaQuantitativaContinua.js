@@ -1,4 +1,4 @@
-const medianaQuantitativaContinua = require('../../js/media/medianaQuantitativaContinua.js');
+const medianaQuantitativaContinua = require('../../js/mediana/medianaQuantitativaContinua.js');
 
 it('espera-se que a função retorne a mediana da variavel quantitativa continua (MEDIANA_CONTINUA)', function(){
   dados = [
