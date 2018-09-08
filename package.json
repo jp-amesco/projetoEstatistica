@@ -10,7 +10,8 @@
     "gulp-bro": "^1.0.3",
     "gulp-jasmine": "^4.0.0",
     "gulp-notify": "^3.2.0",
-    "lab": "^16.0.0"
+    "lab": "^16.0.0",
+    "yargs": "^12.0.1"
   },
   "devDependencies": {
     "aliasify": "^2.1.0",
