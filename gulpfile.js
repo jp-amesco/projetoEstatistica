@@ -10,6 +10,7 @@ const eslintify = require('eslintify');//biblioteca para verificar a qualidade d
 const babelify = require('babelify');
 const uglify = require('gulp-uglify-es').default;
 const jasmine = require('gulp-jasmine');//biblioteca de teste
+const argv = require('yargs').argv;
 
 /*gulp.task('css', function(){
 	return gulp.src(files + 'css/app.less')
@@ -20,8 +21,21 @@ const jasmine = require('gulp-jasmine');//biblioteca de teste
 
 //tarefa que roda a biblioteca de teste
 gulp.task('testes', function(){
+  if(argv.entradaDados){
+    files = './testes/entradaDados/**.js';
+  }else if(argv.media){
+    files = './testes/media/**.js'
+  }else if(argv.separatrizesContinua){
+    files = './testes/medidasSeparatrizes/continua/**.js'
+  }else if(argv.separatrizesDiscreta){
+    files = './testes/medidasSeparatrizes/discreta/**.js'
+  }else if(argv.moda){
+    files = './testes/moda/**.js'
+  }else{
+    files = './testes/**/**.js'
+  }
 	//arquivos que são executados
-	return gulp.src('./testes/**/**.js')
+	return gulp.src(files)
 		.pipe(jasmine()) //biblioteca de teste
 });
 
