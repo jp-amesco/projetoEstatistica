@@ -1,4 +1,4 @@
-const modaQuantitativaContinua = require('../../js/media/mediaQuantitativaContinua.js');
+const mediaQuantitativaContinua = require('../../js/media/mediaQuantitativaContinua.js');
 
 it('espera-se que a função retorne a media da variavel quantitativa continua (MEDIA_ CONTINUA)', function(){
   dados = [
