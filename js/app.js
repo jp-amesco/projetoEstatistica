@@ -5,6 +5,7 @@ const calculaFacContinua = require('./calculaFacContinua.js');
 const identificaVariavel = require('./dados/identificaVariavel.js');
 const modaQualitativa = require('./moda/modaQualitativa.js');
 const modaQuantitativaDiscreta = require('./moda/modaQuantitativaDiscreta.js');
+const modaQuantitativaContinua = require('./moda/modaQuantitativaContinua.js');
 const mediaQuantitativaDiscreta = require('./media/mediaQuantitativaDiscreta.js');
 const medianaQuantitativaDiscreta = require('./mediana/medianaQuantitativaDiscreta.js');
 const medianaQuantitativaContinua = require('./mediana/medianaQuantitativaContinua.js');
@@ -69,7 +70,7 @@ document.querySelector('.btn').addEventListener('click', function(){
     }else if(variavel == 'continua'){
       const arrayIntervalo = intervalo.init(dados);
       const facs = calculaFacContinua.init(dados, arrayIntervalo);
-      //moda = modaQuantitativaContinua.init(fi);
+      moda = modaQuantitativaContinua.init(dados, arrayIntervalo);
       //media = mediaQuantitativaContinua.init(fi);
       mediana = medianaQuantitativaContinua.init(dados, facs, arrayIntervalo);
     }
