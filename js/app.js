@@ -2,6 +2,7 @@ const validaDados = require('./dados/entradaDados.js');
 const identificaVariavel = require('./dados/identificaVariavel.js');
 const modaQualitativa = require('./moda/modaQualitativa.js');
 //const mensagemErro = require('./erros/mensagemErroValidacaoDados.js');
+const quartil = require('./medidasSeparatrizes/quartil.js');
 const frequencia = require('./frequencia.js');
 const mediaQuantitativaDiscreta = require('./media/mediaQuantitativaDiscreta.js');
 const medianaQuantitativaDiscreta = require('./mediana/medianaQuantitativaDiscreta.js');
