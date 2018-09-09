@@ -1,6 +1,7 @@
 //variavel que recebe a função para teste
 const modaQualitativa = require('../../js/moda/modaQualitativa');
 const frequencia = require('../../js/frequencia.js')
+const equivalente = require('../comparaVetor.js');
 
 it('Espera-se que a função calcule a moda recebendo a variavel qualitativa (MODA_QUALITATIVA)', function(){
   dados = [
@@ -24,7 +25,7 @@ it('Espera-se que a função calcule a moda recebendo a variavel qualitativa se 
   ];
   frequenciaDados = frequencia.init(dados);
   resposta = ['EM', 'ES'];
-  response = medianaQualitativa.init(dados);
+  response = modaQualitativa.init(dados);
   responseEqui = equivalente.init(response, resposta);
   expect(responseEqui).toBe(true);
 });
