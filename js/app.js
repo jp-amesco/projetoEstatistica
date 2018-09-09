@@ -5,6 +5,7 @@ const modaQualitativa = require('./moda/modaQualitativa.js');
 const frequencia = require('./frequencia.js');
 const mediaQuantitativaDiscreta = require('./media/mediaQuantitativaDiscreta.js');
 const medianaQuantitativaDiscreta = require('./mediana/medianaQuantitativaDiscreta.js');
+const modaQuantitativaDiscreta = require('./moda/modaQuantitativaDiscreta.js');
 
 //adiciona evento de click ao botão para enviar os dados
 document.querySelector('.btn').addEventListener('click', function(){
