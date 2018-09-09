@@ -1,7 +1,7 @@
 const recebeDados = require('./dados/entradaDados.js');
 const identificaVariavel = require('./dados/identificaVariavel.js');
 //const mensagemErro = require('./erros/mensagemErroValidacaoDados.js');
-
+const quartil = require('./medidasSeparatrizes/quartil.js');
 
 document.querySelector('.btn').addEventListener('click', function(){
   const  inputDados = document.querySelector('#dados').value;
