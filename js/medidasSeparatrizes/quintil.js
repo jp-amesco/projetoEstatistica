@@ -1,7 +1,6 @@
 
-function quintil(){
-  const dados = [1,1,1,1,1,2,2,2,2,3,3,3,3,3,4,4,5,5,5,5];
-  const parte = 3
+function quintil(dados,parte){
+  let posicao;
 
   if (parte == 1) {
     posicao = Math.round((1 * dados.length)/5);
@@ -23,5 +22,3 @@ function quintil(){
 }
 
 exports.init = quintil;
-const test = quintil();
-console.log(test);
