@@ -1,6 +1,7 @@
 function intervaloClasse(dados){
-  let dif = dados[dados.length - 1] - dados[0] + 1;
-  const raiz = Math.sqrt(dif);
+  const dif = dados[dados.length - 1] - dados[0] + 1;
+  console.log(dif);
+  /*const raiz = Math.sqrt(dif);
   let aux = 0;
   let intervalo = 0;
   let quantClasse;
@@ -23,8 +24,7 @@ function intervaloClasse(dados){
   }while(aux == 0)
   array.intervalo = intervalo;
   array.quantClasse = quantClasse;
-  console.log(array);
-  return array;
+  return array;*/
 }
 
 exports.init = intervaloClasse;

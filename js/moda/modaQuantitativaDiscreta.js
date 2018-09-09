@@ -8,8 +8,10 @@ function modaQuantitativaDiscreta(frequencia){
     if (frequenciaDados[i] >= maior) {
       aux = maior;
       maior = frequenciaDados[i];
-      if (aux < maior) {
-        moda.pop();
+      for(let j = 0; j < moda.length; j++){
+        if (aux < maior) {
+          moda.pop();
+        }
       }
       moda.push(dados[i]);
     }

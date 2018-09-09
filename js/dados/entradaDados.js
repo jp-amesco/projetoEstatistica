@@ -15,7 +15,7 @@ function recebeDados(dados = null)
   	}
   	if (!isNaN(newDados[i])) {
   		number++;
-    newDados[i] = parseInt(newDados[i]);
+    newDados[i] = parseFloat(newDados[i]);
   	}
   }
   if(string > 0 && number > 0){

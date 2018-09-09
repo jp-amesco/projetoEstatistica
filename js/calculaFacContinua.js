@@ -1,8 +1,8 @@
 function calculaFac(dados, array){
+  const facs = [];
   let vet = []
-  let facs = [];
   let cont = 1;
-  for (var i = 0; i < dados.length; i++) {
+  for (let i = 0; i < dados.length; i++) {
     if (dados[i] < dados[0] + array.intervalo * cont) {
       vet.push(dados[i])
     }else{
