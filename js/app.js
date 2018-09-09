@@ -6,6 +6,7 @@ const frequencia = require('./frequencia.js');
 const mediaQuantitativaDiscreta = require('./media/mediaQuantitativaDiscreta.js');
 const medianaQuantitativaDiscreta = require('./mediana/medianaQuantitativaDiscreta.js');
 const intervalo = require('./intervaloClasse.js');
+const medianaQuantitativaContinua = require('./mediana/medianaQuantitativaContinua.js');
 
 //adiciona evento de click ao botão para enviar os dados
 document.querySelector('.btn').addEventListener('click', function(){

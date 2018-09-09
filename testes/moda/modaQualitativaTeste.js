@@ -24,7 +24,7 @@ it('Espera-se que a função calcule a moda recebendo a variavel qualitativa se 
   ];
   frequenciaDados = frequencia.init(dados);
   resposta = ['EM', 'ES'];
-  response = medianaQualitativa.init(dados);
+  response = moda.init(dados);
   responseEqui = equivalente.init(response, resposta);
   expect(responseEqui).toBe(true);
 });
