@@ -29,5 +29,4 @@ function medianaContinua(dados, facs, array) {
   const medianaContinua = menorClasseMediana + ((posicao - facAnt) / fiClasseMediana) - array.intervalo;
   return medianaContinua;
 }
-console.log(medianaContinua());
 exports.init = medianaContinua;

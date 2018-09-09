@@ -46,7 +46,7 @@ it('Espera-se que a função calcule e retorne o decil 7 da variavel discreta, (
   dados = [2, 2, 2, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5, 7, 7, 7, 7, 7, 7, 10, 10];
   separatriz = 7;
   response = decil.init(dados, separatriz);
-  expect(response).toBe(5);
+  expect(response).toBe(7);
 });
 
 it('Espera-se que a função calcule e retorne o decil 8 da variavel discreta, (DECIL_DISCRETA)', function(){

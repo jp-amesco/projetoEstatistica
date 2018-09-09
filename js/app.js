@@ -1,17 +1,17 @@
 const validaDados = require('./dados/entradaDados.js');
+const frequencia = require('./frequencia.js');
+const intervalo = require('./intervaloClasse.js');
 const identificaVariavel = require('./dados/identificaVariavel.js');
 const modaQualitativa = require('./moda/modaQualitativa.js');
-//const mensagemErro = require('./erros/mensagemErroValidacaoDados.js');
+const modaQuantitativaDiscreta = require('./moda/modaQuantitativaDiscreta.js');
+const mediaQuantitativaDiscreta = require('./media/mediaQuantitativaDiscreta.js');
+const medianaQuantitativaDiscreta = require('./mediana/medianaQuantitativaDiscreta.js');
+const medianaQuantitativaContinua = require('./mediana/medianaQuantitativaContinua.js');
 const quartil = require('./medidasSeparatrizes/quartil.js');
 const quintil = require('./medidasSeparatrizes/quintil.js');
 const decil = require('./medidasSeparatrizes/decil.js');
 const percentil = require('./medidasSeparatrizes/percentil.js');
-const frequencia = require('./frequencia.js');
-const mediaQuantitativaDiscreta = require('./media/mediaQuantitativaDiscreta.js');
-const medianaQuantitativaDiscreta = require('./mediana/medianaQuantitativaDiscreta.js');
-const intervalo = require('./intervaloClasse.js');
-const modaQuantitativaDiscreta = require('./moda/modaQuantitativaDiscreta.js');
-const medianaQuantitativaContinua = require('./mediana/medianaQuantitativaContinua.js');
+//const mensagemErro = require('./erros/mensagemErroValidacaoDados.js');
 
 //adiciona evento de click ao botão para enviar os dados
 document.querySelector('.btn').addEventListener('click', function(){
@@ -34,6 +34,8 @@ document.querySelector('.btn').addEventListener('click', function(){
     const fi = frequencia.init(dados);
 
     let moda;
+    let media;
+    let mediana;
     //verifica qual resposta da função que identifica a variavel
     if (variavel == 'pergunta') {
       //se for pergunta, chama a função para gera uma pergunta ao usuario,
@@ -47,13 +49,13 @@ document.querySelector('.btn').addEventListener('click', function(){
       moda = modaQualitativa.init(fi);
       //mediana = medianaQualitativa.init(fi);
     }else if(variavel == 'discreta') {
-      /*moda = modaDiscreta.init(fi);
-      media = mediaDiscreta.init(fi);
-      mediana = medianaDiscreta.init(fi);*/
+      moda = modaQuantitativaDiscreta.init(fi);
+      media = mediaQuantitativaDiscreta.init(fi);
+      mediana = medianaQuantitativaDiscreta.init(fi);
     }else if(variavel == 'continua'){
-      /*moda = modaDiscreta.init(fi);
-      media = mediaDiscreta.init(fi);
-      mediana = medianaDiscreta.init(fi);*/
+      //moda = modaQuantitativaContinua.init(fi);
+      //media = mediaQuantitativaContinua.init(fi);
+      mediana = medianaQuantitativaContinua.init(fi);
     }
   }
 });
