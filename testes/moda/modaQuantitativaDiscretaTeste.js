@@ -11,10 +11,8 @@ it('espera-se que a função retorne as modas se a variavel for quantitativa dis
 
 it('espera-se que a função retorne a moda se a variavel for quantitativa discreta (MODA_QUANTITATIVA_DISCRETA)', function(){
   dados = [3, 3, 3, 3, 4, 4, 4, 5, 5, 6];
-  resposta = [3];
   response = modaQuantitativaDiscreta.init(dados);
-  responseEqui = equivalente.init(response, resposta);
-  expect(responseEqui).toBe(true);
+  expect(response).toBe(3);
 });
 
 it('espera-se que a função retorne a moda se a variavel for quantitativa discreta recebendo poucos dados (MODA_QUANTITATIVA_DISCRETA)', function(){
