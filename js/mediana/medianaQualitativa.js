@@ -1,6 +1,6 @@
 function medianaQualitativa (dados) {
   let i = 0;
-  let aux = [];
+  const aux = [];
   if (dados.length % 2 == 0) {
     i = dados.length / 2 - 1;
     if(dados[i] != dados[i + 1]){

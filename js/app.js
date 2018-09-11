@@ -14,6 +14,7 @@ const quartilDiscreta = require('./medidasSeparatrizes/quartil.js');
 const quintilDiscreta = require('./medidasSeparatrizes/quintil.js');
 const decilDiscreta = require('./medidasSeparatrizes/decil.js');
 const percentilDiscreta = require('./medidasSeparatrizes/percentil.js');
+const medianaQualitativa = require('./mediana/medianaQualitativa.js');
 //const mensagemErro = require('./erros/mensagemErroValidacaoDados.js');
 
 //adiciona evento de click ao botão para enviar os dados
@@ -72,7 +73,7 @@ document.querySelector('.btn').addEventListener('click', function(){
       //se a variavel for moda, chama os calculos respectivos a essa variavel,
       //enviando a frequancia como parametro
       moda = modaQualitativa.init(fi);
-      //mediana = medianaQualitativa.init(fi);
+      mediana = medianaQualitativa.init(dados);
     }else if(variavel == 'discreta') {
       moda = modaQuantitativaDiscreta.init(fi);
       media = mediaQuantitativaDiscreta.init(dados);
