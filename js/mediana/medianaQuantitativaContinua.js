@@ -1,7 +1,6 @@
 function medianaContinua(dados, facs, array) {
   const posicao = dados.length / 2;
   const valorPosicao = dados[Math.round(posicao)];
-  console.log(posicao);
   const classes = {};
   const classeMediana = [];
   let menorClasseMediana;
@@ -22,12 +21,17 @@ function medianaContinua(dados, facs, array) {
   for (let i = 0; i < array.quantClasse; i++) {
     if (classes['classe' + (i + 1)].indexOf(valorPosicao) != -1) {
       menorClasseMediana = dados[0] + array.intervalo * i;
-      facAnt = facs[i - 1];
+      if (i == 0) {
+        facAnt = 0;
+      }else{
+        facAnt = facs[i - 1];
+      }
       fiClasseMediana = classes['classe' + (i + 1)].length;
       break;
     }
   }
-  const medianaContinua = menorClasseMediana + ((posicao - facAnt) / fiClasseMediana) - array.intervalo;
+  const medianaContinua = menorClasseMediana + ((posicao - facAnt) / fiClasseMediana) * array.intervalo;
+  console.log(menorClasseMediana, facAnt, posicao, fiClasseMediana, array.intervalo);
   return medianaContinua;
 }
 exports.init = medianaContinua;

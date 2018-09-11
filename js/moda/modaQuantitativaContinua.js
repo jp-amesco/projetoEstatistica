@@ -14,7 +14,7 @@ function modaQuantitativaContinua(dados, array){
     }
   }
   classes['classe' + cont] = vetDados;
-  classeModal = classes.classe1;
+  classeModal = 1;
   lengthClasse = classes.classe1.length
   for (let i = 1; i < array.quantClasse; i++) {
     if (classes['classe' + (i + 1)].length > lengthClasse) {
