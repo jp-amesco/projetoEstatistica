@@ -7,6 +7,7 @@ const modaQualitativa = require('./moda/modaQualitativa.js');
 const modaQuantitativaDiscreta = require('./moda/modaQuantitativaDiscreta.js');
 const modaQuantitativaContinua = require('./moda/modaQuantitativaContinua.js');
 const mediaQuantitativaDiscreta = require('./media/mediaQuantitativaDiscreta.js');
+const mediaQuantitativaContinua = require('./media/mediaQuantitativaContinua.js');
 const medianaQuantitativaDiscreta = require('./mediana/medianaQuantitativaDiscreta.js');
 const medianaQuantitativaContinua = require('./mediana/medianaQuantitativaContinua.js');
 const quartilDiscreta = require('./medidasSeparatrizes/quartil.js');
@@ -36,7 +37,21 @@ document.querySelector('.btn').addEventListener('click', function(){
     //chama a função para identificar qual é a variavel
     variavel = identificaVariavel.init(dados);
     //organiza o vetor
-    dados.sort();
+    let aux;
+    let cont = 0;
+    let j = 1;
+    do {
+      cont = 0;
+      for (let i = 0; i < dados.length - j; i++) {
+        if (dados[i] > dados[i + 1]) {
+          aux = dados[i];
+          dados[i] = dados[i + 1];
+          dados[i + 1] = aux;
+          cont++;
+        }
+      }
+      j++;
+    } while (cont != 0);
     //chama a função de frequencia
     const fi = frequencia.init(dados);
 
@@ -53,7 +68,6 @@ document.querySelector('.btn').addEventListener('click', function(){
       //pedindo que ele informe qual a variavel será usada
       //variavel = geraModalPergunta.init();
     }
-
     if (variavel == 'qualitativa') {
       //se a variavel for moda, chama os calculos respectivos a essa variavel,
       //enviando a frequancia como parametro
@@ -71,7 +85,7 @@ document.querySelector('.btn').addEventListener('click', function(){
       const arrayIntervalo = intervalo.init(dados);
       const facs = calculaFacContinua.init(dados, arrayIntervalo);
       moda = modaQuantitativaContinua.init(dados, arrayIntervalo);
-      //media = mediaQuantitativaContinua.init(fi);
+      media = mediaQuantitativaContinua.init(dados, arrayIntervalo);
       mediana = medianaQuantitativaContinua.init(dados, facs, arrayIntervalo);
     }
     console.log('moda: ', moda);

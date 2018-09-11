@@ -1,6 +1,7 @@
 function medianaContinua(dados, facs, array) {
   const posicao = dados.length / 2;
-  const valorPosicao = dados[posicao];
+  const valorPosicao = dados[Math.round(posicao)];
+  console.log(posicao);
   const classes = {};
   const classeMediana = [];
   let menorClasseMediana;
