@@ -15,6 +15,7 @@ const quintilDiscreta = require('./medidasSeparatrizes/quintil.js');
 const decilDiscreta = require('./medidasSeparatrizes/decil.js');
 const percentilDiscreta = require('./medidasSeparatrizes/percentil.js');
 const medianaQualitativa = require('./mediana/medianaQualitativa.js');
+const organizacaoDados = require('./dados/organizacaoDados.js');
 //const mensagemErro = require('./erros/mensagemErroValidacaoDados.js');
 
 //adiciona evento de click ao botão para enviar os dados
