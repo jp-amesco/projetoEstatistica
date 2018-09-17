@@ -1,4 +1,7 @@
-const validaDados = require('./dados/entradaDados.js');
+const manipulaTelaInicial = require('./telaInicial/manipulaTelaInicial.js');
+
+manipulaTelaInicial.init();
+/*const validaDados = require('./dados/entradaDados.js');
 const frequencia = require('./frequencia.js');
 const intervalo = require('./intervaloClasse.js');
 const calculaFacContinua = require('./calculaFacContinua.js');
@@ -37,22 +40,7 @@ document.querySelector('.btn').addEventListener('click', function(){
   }else{
     //chama a função para identificar qual é a variavel
     variavel = identificaVariavel.init(dados);
-    //organiza o vetor
-    let aux;
-    let cont = 0;
-    let j = 1;
-    do {
-      cont = 0;
-      for (let i = 0; i < dados.length - j; i++) {
-        if (dados[i] > dados[i + 1]) {
-          aux = dados[i];
-          dados[i] = dados[i + 1];
-          dados[i + 1] = aux;
-          cont++;
-        }
-      }
-      j++;
-    } while (cont != 0);
+
     //chama a função de frequencia
     const fi = frequencia.init(dados);
 
@@ -98,3 +86,4 @@ document.querySelector('.btn').addEventListener('click', function(){
     console.log('percentil: ', percentil);
   }
 });
+*/
