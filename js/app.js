@@ -18,6 +18,7 @@ const medianaQualitativa = require('./mediana/medianaQualitativa.js');
 const organizacaoDados = require('./dados/organizacaoDados.js');
 const desvioPadrao = require('./desvioPadrao/desvioPadrao.js');
 const desvioPadraoContinua = require('./desvioPadrao/desvioPadraoContinua.js');
+const decilContinua = require('./medidasSeparatrizes/decilContinua.js');
 //const mensagemErro = require('./erros/mensagemErroValidacaoDados.js');
 
 //adiciona evento de click ao botão para enviar os dados

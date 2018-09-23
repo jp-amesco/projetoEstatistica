@@ -1,21 +1,13 @@
-const dados = [
-19,19,19,19,19,20,20,20,21,21,22,22,22,23,25,25,26,27,28,28,30,32,35,39,40,41,42,46
-];
-const parte = 6;
-const array = {intervalo: 7, quantClasse: 4};
-let fac = [17,18,19,20,21,22];
-let facAnterior = 16;
-
-function decilContinua () {
-  const posicao = (dados.length*parte)/10 //resultado disso = 16,8
-  let classes = [];
-  let vetDados = []
+function decilContinua (dados, array, facs, parte) {
+  const posicao = (dados.length*parte)/10
+  const posicaoArredondada = Math.round(posicao);
+  const todosIntervalos = [];
+  const frequencia = [];
+  const classes = [];
+  let classePesquisada;
+  let facAnterior = 0;
+  let vetDados = [];
   let cont = 1;
-  let primeiroInter = [];
-  let frequencia = [];
-  let decCont = 0;
-
-  decCont = Math.round(posicao);
 
   for (let i = 0; i < dados.length; i++) {
     if (dados[i] < dados[0] + array.intervalo * cont) {
@@ -27,15 +19,25 @@ function decilContinua () {
     }
   }
   classes['classe' + cont] = vetDados;
-  console.log(classes)
 
+  for (let i = 0; i < cont; i++) {
+    if (classes['classe' + (i+1)].indexOf(dados[posicaoArredondada]) > -1) {
+      classePesquisada = i;
+    }
+  }
+
+  if (classePesquisada > 0) {
+    facAnterior = facs[classePesquisada - 1];
+  }
 
   for (let i = 0; i < array.quantClasse; i++) {
-    primeiroInter[i] = dados[0] + array.intervalo * i;
+    todosIntervalos[i] = dados[0] + array.intervalo * i;
     frequencia[i] = classes['classe' + (i + 1)].length;
   }
+  return Math.round(
+    todosIntervalos[classePesquisada] + ((posicao - facAnterior) / frequencia[classePesquisada]) * array.intervalo
+    );
+
 }
 
-const teste = decilContinua();
-console.log(teste);
 exports.init = decilContinua;
