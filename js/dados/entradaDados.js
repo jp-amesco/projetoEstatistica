@@ -3,7 +3,7 @@ function recebeDados(dados = null)
   let string = 0;
   let number = 0;
   if (dados == null || dados.length <= 1) {
-    return 'Quantidade de dados insuficiente para os cálculos';
+    return 1;
   }
   const newDados = dados.split(',').map(function(item){
     return item.trim();
@@ -19,7 +19,7 @@ function recebeDados(dados = null)
   	}
   }
   if(string > 0 && number > 0){
-  	return 'Dados inválidos';
+  	return 2;
   }
   return newDados;
 }

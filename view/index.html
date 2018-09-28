@@ -1,31 +1,73 @@
 <!doctype html>
 <html lang="pt-br">
-    <head>
-        <meta charset="utf-8">
-        <title>Minimo necessário</title>
-    </head>
-    <body>
-        <label for="dados">Entrada de dados</label>
-        <input type="text" name="dados" id="dados">
-        <br>
-        <br>
-        <label for="parte_quartil">Quartil</label>
-        <input type="number" name="parte_quartil" id="parte_quartil">
-        <br>
-        <br>
-        <label for="parte_quintil">quintil</label>
-        <input type="number" name="parte_quintil" id="parte_quintil">
-        <br>
-        <br>
-        <label for="parte_decil">decil</label>
-        <input type="number" name="parte_decil" id="parte_decil">
-        <br>
-        <br>
-        <label for="parte_percentil">percentil</label>
-        <input type="number" name="parte_percentil" id="parte_percentil">
-		<button class="btn">teste</button>
+<head>
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../public/css/app.css">
+  <meta charset="utf-8">
+  <title>Minimo necessário</title>
+</head>
+
+<body>
+  <section class="teste">
+    <div class="col-8 m-auto text-center">
+      <h1 class="title">Statisticator</h1>
+      <p class="desc">Let we think for you.</p>
+      <button class="btn btn-lg" id="comece_agora">Clique aqui para começar</button>
+
+    </div>
+  </section>
+
+  <div class="content d-none container align-content-center" id="todos_tipos_pesquisa">
+    <section class="content">
+      <div class="row">
+        <p id="mensagem" class="alert"></p>
+        <label class="insira-dados" for="dados">Insira os dados aqui</label>
+        <input type="text" class="input-group input-dados" id="dados" name="dados">
+      </div>
+      <div class="tipo-pesquisa">
+        <a href="#" class="btn btn-dark pesquisa" id="AMOSTRA">AMOSTRA</a>
+        <a href="#" class="btn btn-dark pesquisa" id="SENSO">SENSO</a>
+      </div>
+    </section>
+
+    <div id="menu-tabs" class="d-none">
+      <ul class="nav nav-tabs">
+        <li class="nav-item"><a class="nav-link active" href="#">Tabela</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">bbb</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">ccc</a></li>
+      </ul>
+
+      <div class="tabela">
+        <table class="table table-striped table-dark"></table>
+      </div>
+
+      <div id="valores" class="row d-none">
+        <div id="moda" class="col-md-3 title-valores">
+          <h3 >Moda</h3>
+        </div>
+
+        <div id="media" class="col-md-3 title-valores">
+          <h3 >Média</h3>
+        </div>
+
+        <div id="mediana" class="col-md-3 title-valores">
+          <h3 >Mediana</h3>
+        </div>
+
+        <div id="desvioPadrao" class="col-md-3 title-valores">
+          <h3 > Desvio Padrão</h3>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
-        <script src="../public/js/app.min.js"></script>
-    </body>
+
+
+  <script src="../public/js/app.min.js"></script>
+  <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="../node_modules/popper.js/dist/popper.min.js"></script>
+  <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
+
 </html>

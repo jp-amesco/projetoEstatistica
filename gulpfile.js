@@ -1,9 +1,9 @@
 const gulp = require('gulp');//biblioteca principal
 const $ = require('gulp-load-plugins')();
 const pug = require('gulp-pug');
-//const less = require('gulp-less');
+const less = require('gulp-less');
 const aliasify = require('aliasify');
-//const minifyCSS = require('gulp-csso');
+const minifyCSS = require('gulp-csso');
 const concat = require('gulp-concat');//biblioteca de minificação dos arquivos js
 const sourcemaps = require('gulp-sourcemaps');//biblioteca para facilitar o debug via navegador
 const eslintify = require('eslintify');//biblioteca para verificar a qualidade de escrita do código
@@ -12,12 +12,12 @@ const uglify = require('gulp-uglify-es').default;
 const jasmine = require('gulp-jasmine');//biblioteca de teste
 const argv = require('yargs').argv;
 
-/*gulp.task('css', function(){
-	return gulp.src(files + 'css/app.less')
+gulp.task('css', function(){
+	return gulp.src('css/app.less')
 		.pipe(less())
 		.pipe(minifyCSS())
 		.pipe((gulp.dest('./public/css')))
-});*/
+});
 
 //tarefa que roda a biblioteca de teste
 gulp.task('testes', function(){
@@ -64,8 +64,8 @@ gulp.task('watch', function(){
 	//arquivos monitorados
 	gulp.watch('js/**/*.js', ['js', 'testes']);
 	gulp.watch('testes/**/*.js', ['testes'])
-	//gulp.watch(files + 'css/**/*.less', ['css']);
+	gulp.watch('css/**/*.less', ['css']);
 });
 
 //tarefas executadas na primeira vez que rodamos o comando gulp
-gulp.task('default', ['js', 'testes', 'watch']);
+gulp.task('default', ['js', 'css', 'testes', 'watch']);
