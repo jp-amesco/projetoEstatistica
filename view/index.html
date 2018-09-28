@@ -8,22 +8,62 @@
 </head>
 
 <body>
+  <section class="teste">
+    <div class="col-8 m-auto text-center">
+      <h1 class="title">Statisticator</h1>
+      <p class="desc">Let we think for you.</p>
+      <button class="btn btn-lg" id="comece_agora">Clique aqui para começar</button>
 
-  <div class="col-8 m-auto text-center">
-    <h1 class="title">Estatisticator</h1>
-    <p class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce semper, augue eu tincidunt pellentesque, neque turpis consequat massa</p>
-    <button class="btn btn-lg" id="comece_agora">Clique aqui para começar</button>
-    <div class="d-none" id="todos_tipos_pesquisa">
+    </div>
+  </section>
+
+  <div class="content d-none container align-content-center" id="todos_tipos_pesquisa">
+    <section class="content">
       <div class="row">
-        <div class="col-5 tipo_pesquisa" id="amostra">
-          <a href="#" class="link">AMOSTRA</a>
+        <p id="mensagem" class="alert"></p>
+        <label class="insira-dados" for="dados">Insira os dados aqui</label>
+        <input type="text" class="input-group input-dados" id="dados" name="dados">
+      </div>
+      <div class="tipo-pesquisa">
+        <a href="#" class="btn btn-dark pesquisa" id="AMOSTRA">AMOSTRA</a>
+        <a href="#" class="btn btn-dark pesquisa" id="SENSO">SENSO</a>
+      </div>
+    </section>
+
+    <div id="menu-tabs" class="d-none">
+      <ul class="nav nav-tabs">
+        <li class="nav-item"><a class="nav-link active" href="#">Tabela</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">bbb</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">ccc</a></li>
+      </ul>
+
+      <div class="tabela">
+        <table class="table table-striped table-dark"></table>
+      </div>
+
+      <div id="valores" class="row d-none">
+        <div id="moda" class="col-md-3 title-valores">
+          <h3 >Moda</h3>
         </div>
-        <div class="col-5 tipo_pesquisa" id="senso">
-          <a href="#" class="link">SENSO</a>
+
+        <div id="media" class="col-md-3 title-valores">
+          <h3 >Média</h3>
+        </div>
+
+        <div id="mediana" class="col-md-3 title-valores">
+          <h3 >Mediana</h3>
+        </div>
+
+        <div id="desvioPadrao" class="col-md-3 title-valores">
+          <h3 > Desvio Padrão</h3>
         </div>
       </div>
     </div>
   </div>
+
+
+
+
   <script src="../public/js/app.min.js"></script>
   <script src="../node_modules/jquery/dist/jquery.min.js"></script>
   <script src="../node_modules/popper.js/dist/popper.min.js"></script>
