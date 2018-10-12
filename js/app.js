@@ -14,9 +14,11 @@ const medianaQualitativa = require('./mediana/medianaQualitativa.js');
 const mensagemErro = require('./erros/mensagemErroValidacaoDados.js');
 const criaTabela = require('./criaTabela.js');
 const criaDadosTabela = require('./criaDadosTabela.js');
+const criaGrafico = require('./criaGrafico.js');
 
 //adiciona evento de click ao botão para enviar os dados
 document.querySelector('#comece_agora').addEventListener('click', function(e){
+  console.log('a');
   e.preventDefault();
   document.querySelector('#comece_agora').classList.add('d-none');
   const todosTiposPesquisa = document.querySelector('#todos_tipos_pesquisa');
@@ -73,21 +75,32 @@ document.querySelector('#comece_agora').addEventListener('click', function(e){
           //media = mediaQuantitativaContinua.init(dados, arrayIntervalo);
           //mediana = medianaQuantitativaContinua.init(dados, facs, arrayIntervalo);
         }
-        let dadosTabela = criaDadosTabela.init(variavel, fi)
+        const dadosTabela = criaDadosTabela.init(variavel, fi)
+        let lastActive;
         criaTabela.init(dadosTabela, variavel);
+
+        //criaGrafico.init(variavel, fi);
         document.querySelector('#menu-tabs').classList.remove('d-none');
         document.querySelector('#valores').classList.remove('d-none');
-
-
+        lastActive = 'tabela';
         colocaValor(moda, media, mediana);
-
         const tabs = document.querySelectorAll('.nav-link');
         for (let i = 0; i < tabs.length; i++) {
           tabs[i].addEventListener('click', function(event){
             event.preventDefault;
             if (this.text == 'Tabela') {
-              dadosTabela = criaDadosTabela.init(variavel, fi)
-              criaTabela.init(dadosTabela, variavel);
+              this.classList.add('active');
+              document.querySelector('#' + this.id).classList.add('avtive');
+              document.querySelector('#' + lastActive).classList.remove('active');
+              document.querySelector('.' + lastActive).classList.add('d-none');
+              document.querySelector('.' + this.id).classList.remove('d-none');
+              lastActive = this.id;
+            }else if(this.text == 'Gráfico'){
+              document.querySelector('#' + this.id).classList.add('avtive');
+              document.querySelector('#' + lastActive).classList.remove('active');
+              document.querySelector('.' + lastActive).classList.add('d-none');
+              document.querySelector('.' + this.id).classList.remove('d-none')
+              lastActive = this.id;
             }
 
           });
