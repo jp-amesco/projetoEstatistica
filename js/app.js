@@ -10,6 +10,7 @@ const mediaQuantitativaDiscreta = require('./media/mediaQuantitativaDiscreta.js'
 const mediaQuantitativaContinua = require('./media/mediaQuantitativaContinua.js');
 const medianaQuantitativaDiscreta = require('./mediana/medianaQuantitativaDiscreta.js');
 const medianaQuantitativaContinua = require('./mediana/medianaQuantitativaContinua.js');
+const medidasSeparatrizesDiscreta = require('./medidasSeparatrizes/medidasSeparatrizesDiscreta.js');
 const medianaQualitativa = require('./mediana/medianaQualitativa.js');
 const organizacaoDados = require('./dados/organizacaoDados.js');
 const desvioPadrao = require('./desvioPadrao/desvioPadrao.js');
@@ -17,7 +18,9 @@ const desvioPadraoContinua = require('./desvioPadrao/desvioPadraoContinua.js');
 const decilContinua = require('./medidasSeparatrizes/decilContinua.js');
 //const mensagemErro = require('./erros/mensagemErroValidacaoDados.js');
 const mensagemErro = require('./erros/mensagemErroValidacaoDados.js');
-const criaTabela = require('./criaTabela.js');
+const criaTabela = require('./dom/criaTabela.js');
+const criaGrafico = require('./dom/criaGrafico.js');
+const colocaValor = require('./dom/colocaVAlor.js');
 const criaDadosTabela = require('./criaDadosTabela.js');
 
 //adiciona evento de click ao botão para enviar os dados
@@ -52,6 +55,8 @@ document.querySelector('#comece_agora').addEventListener('click', function(e){
         let quintil;
         let decil;
         let percentil;
+        let facs;
+        let arrayIntervalo;
         //verifica qual resposta da função que identifica a variavel
         if (variavel == 'pergunta') {
           //se for pergunta, chama a função para gera uma pergunta ao usuario,
@@ -67,72 +72,47 @@ document.querySelector('#comece_agora').addEventListener('click', function(e){
           moda = modaQuantitativaDiscreta.init(fi);
           media = mediaQuantitativaDiscreta.init(dados);
           mediana = medianaQuantitativaDiscreta.init(dados);
-          //quartil = quartilDiscreta.init(dados, parteQuartil);
-          //quintil = quintilDiscreta.init(dados, parteQuintil);
-          //decil = decilDiscreta.init(dados, parteDecil);
-          //percentil = percentilDiscreta.init(dados, partePercentil);
         }else if(variavel == 'continua'){
-          //arrayIntervalo = intervalo.init(dados);
-          //facs = calculaFacContinua.init(dados, arrayIntervalo);
-          //moda = modaQuantitativaContinua.init(dados, arrayIntervalo);
-          //media = mediaQuantitativaContinua.init(dados, arrayIntervalo);
-          //mediana = medianaQuantitativaContinua.init(dados, facs, arrayIntervalo);
+          arrayIntervalo = intervalo.init(dados);
+          facs = calculaFacContinua.init(dados, arrayIntervalo);
+          moda = modaQuantitativaContinua.init(dados, arrayIntervalo);
+          media = mediaQuantitativaContinua.init(dados, arrayIntervalo);
+          mediana = medianaQuantitativaContinua.init(dados, facs, arrayIntervalo);
         }
-        let dadosTabela = criaDadosTabela.init(variavel, fi)
+        const dadosTabela = criaDadosTabela.init(variavel, fi)
+        let lastActive;
         criaTabela.init(dadosTabela, variavel);
+        criaGrafico.init(variavel, fi);
+        colocaValor.init(moda, media, mediana);
+        const slider = document.querySelectorAll('.slider');
+        const output = document.querySelectorAll('.output');
+        const result = document.querySelectorAll('.result');
+        for (let i = 0; i < slider.length; i++) {
+          slider[i].value = 1;
+          result[i].innerHTML = medidasSeparatrizesDiscreta.init(dados, slider[i].value, slider[i].max);
+          output[i].innerHTML = slider[i].value;
+          slider[i].addEventListener('input', function (e) {
+            output[i].innerHTML = this.value;
+            result[i].innerHTML = medidasSeparatrizesDiscreta.init(dados, this.value, this.max);
+          });
+        }
+
         document.querySelector('#menu-tabs').classList.remove('d-none');
         document.querySelector('#valores').classList.remove('d-none');
-
-
-        colocaValor(moda, media, mediana);
-
+        lastActive = 'tabela';
         const tabs = document.querySelectorAll('.nav-link');
         for (let i = 0; i < tabs.length; i++) {
           tabs[i].addEventListener('click', function(event){
             event.preventDefault;
-            if (this.text == 'Tabela') {
-              dadosTabela = criaDadosTabela.init(variavel, fi)
-              criaTabela.init(dadosTabela, variavel);
-            }
-
+            this.classList.add('active');
+            document.querySelector('#' + this.id).classList.add('active');
+            document.querySelector('#' + lastActive).classList.remove('active');
+            document.querySelector('.' + lastActive).classList.add('d-none');
+            document.querySelector('.' + this.id).classList.remove('d-none');
+            lastActive = this.id;
           });
         }
-
       }
     });
   }
 });
-
-function colocaValor(moda, media, mediana) {
-  let paragrafo;
-  let text;
-  const linhaValores = document.querySelectorAll('.title-valores');
-  for (let i = 0; i < linhaValores.length; i++) {
-    switch(linhaValores[i].id) {
-      case 'moda':
-        paragrafo = document.createElement('p');
-        text = document.createTextNode(moda);
-        paragrafo.appendChild(text);
-        break;
-
-      case 'media':
-        paragrafo = document.createElement('p');
-        text = document.createTextNode(media);
-        paragrafo.appendChild(text);
-        break;
-
-      case 'mediana':
-        paragrafo = document.createElement('p');
-        text = document.createTextNode(mediana);
-        paragrafo.appendChild(text);
-        break;
-
-      case 'desvioPadrao':
-        paragrafo = document.createElement('p');
-        text = document.createTextNode('a');
-        paragrafo.appendChild(text);
-        break;
-    }
-    linhaValores[i].appendChild(paragrafo);
-  }
-}
