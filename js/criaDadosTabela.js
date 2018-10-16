@@ -4,9 +4,9 @@ const colFacPercent = ['Fac %'];
 
 function criaDadosTabela(variavel, fi) {
   let arrayPrincipal = [];
-  const colDados = fi[1];
+  const colDados = fi[1].slice();
   colDados.unshift('xi');
-  const colFrequencia = fi[0];
+  const colFrequencia = fi[0].slice();
   colFrequencia.unshift('fi');
 
   if (variavel == 'continua') {

@@ -5,7 +5,12 @@ function criaTabela(dadosTabela, variavel) {
 
   }else{
     const tabela = document.querySelector('.table');
+    const existeTabela = document.querySelector('#tbody');
+    if(existeTabela){
+      tabela.removeChild(existeTabela);
+    }
     const tbody = document.createElement('tbody');
+    tbody.id = 'tbody';
     for (let j = 0; j < dadosTabela[0].length; j++) {
       const linha = document.createElement('tr');
       for (let i = 0; i < dadosTabela.length; i++) {

@@ -6,6 +6,7 @@ env:
 parser: babel-eslint
 parserOptions:
   sourceType: module
+  allowImportExportEverywhere: true
 ecmaFeatures:
   modules: true
   classes: true
@@ -26,7 +27,7 @@ rules:
     - single
 globals:
   $: true
-  
+
 
 
 # vim:ft=yaml
