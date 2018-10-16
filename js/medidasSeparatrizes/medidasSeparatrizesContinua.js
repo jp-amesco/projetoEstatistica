@@ -1,10 +1,20 @@
-function decilContinua (dados, array, facs, parte) {
-  const posicao = (dados.length*parte)/10
+function medidasSeparatrizesContinua (dados, array, facs, parte, medida) {
+  let posicao = 0;
+  if (medida == 'quartil') {
+    posicao = (dados.length * parte) / 4;
+  }else if (medida == 'quintil') {
+    posicao = (dados.length * parte) / 5;
+  }else if (medida == 'decil') {
+    posicao = (dados.length * parte) / 10;
+  }else if (medida == 'percentil') {
+    posicao = (dados.length * parte) / 100;
+  }
+
   const posicaoArredondada = Math.round(posicao);
   const todosIntervalos = [];
   const frequencia = [];
   const classes = [];
-  let classePesquisada;
+  let classePesquisada = 0;
   let facAnterior = 0;
   let vetDados = [];
   let cont = 1;
@@ -40,4 +50,4 @@ function decilContinua (dados, array, facs, parte) {
 
 }
 
-exports.init = decilContinua;
+exports.init = medidasSeparatrizesContinua;
