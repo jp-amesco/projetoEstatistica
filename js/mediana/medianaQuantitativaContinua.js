@@ -31,7 +31,6 @@ function medianaContinua(dados, facs, array) {
     }
   }
   const medianaContinua = menorClasseMediana + ((posicao - facAnt) / fiClasseMediana) * array.intervalo;
-  console.log(menorClasseMediana, facAnt, posicao, fiClasseMediana, array.intervalo);
   return medianaContinua;
 }
 exports.init = medianaContinua;

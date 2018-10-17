@@ -16,12 +16,12 @@ const organizacaoDados = require('./dados/organizacaoDados.js');
 const desvioPadrao = require('./desvioPadrao/desvioPadrao.js');
 const desvioPadraoContinua = require('./desvioPadrao/desvioPadraoContinua.js');
 const medidasSeparatrizesContinua = require('./medidasSeparatrizes/medidasSeparatrizesContinua.js');
-//const mensagemErro = require('./erros/mensagemErroValidacaoDados.js');
 const mensagemErro = require('./erros/mensagemErroValidacaoDados.js');
 const criaTabela = require('./dom/criaTabela.js');
 const criaGrafico = require('./dom/criaGrafico.js');
-const colocaValor = require('./dom/colocaVAlor.js');
+const colocaValor = require('./dom/colocaValor.js');
 const criaDadosTabela = require('./criaDadosTabela.js');
+const manipulaMedidasSeparatrizes = require('./dom/manipulaMedidasSeparatrizes.js');
 
 //adiciona evento de click ao botão para enviar os dados
 document.querySelector('#comece_agora').addEventListener('click', function(e){
@@ -37,7 +37,7 @@ document.querySelector('#comece_agora').addEventListener('click', function(e){
 
       //chama a função para verificar se os dados são validos,
       //se forem validos e numeros, converte para int
-      const dados = entradaDados.init(inputDados);
+      let dados = entradaDados.init(inputDados);
       let variavel;
       //verifica se a resposta foi algum erro
       if (dados == 1 || dados == 2) {
@@ -47,6 +47,7 @@ document.querySelector('#comece_agora').addEventListener('click', function(e){
         //chama a função para identificar qual é a variavel
         variavel = identificaVariavel.init(dados);
         //chama a função de frequencia
+        dados = organizacaoDados.init(dados);
         const fi = frequencia.init(dados);
         let moda;
         let media;
@@ -87,16 +88,7 @@ document.querySelector('#comece_agora').addEventListener('click', function(e){
         const slider = document.querySelectorAll('.slider');
         const output = document.querySelectorAll('.output');
         const result = document.querySelectorAll('.result');
-        for (let i = 0; i < slider.length; i++) {
-          slider[i].value = 1;
-          result[i].innerHTML = medidasSeparatrizesDiscreta.init(dados, slider[i].value, slider[i].max);
-          output[i].innerHTML = slider[i].value;
-          slider[i].addEventListener('input', function (e) {
-            output[i].innerHTML = this.value;
-            result[i].innerHTML = medidasSeparatrizesDiscreta.init(dados, this.value, this.max);
-          });
-        }
-
+        manipulaMedidasSeparatrizes.init(slider, result, dados, output);
         document.querySelector('#menu-tabs').classList.remove('d-none');
         document.querySelector('#valores').classList.remove('d-none');
         lastActive = 'tabela';

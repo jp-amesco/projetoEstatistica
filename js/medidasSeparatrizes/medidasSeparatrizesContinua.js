@@ -1,23 +1,20 @@
-function medidasSeparatrizesContinua (dados, array, facs, parte, medida) {
-  let posicao = 0;
-  if (medida == 'quartil') {
-    posicao = (dados.length * parte) / 4;
-  }else if (medida == 'quintil') {
-    posicao = (dados.length * parte) / 5;
-  }else if (medida == 'decil') {
-    posicao = (dados.length * parte) / 10;
-  }else if (medida == 'percentil') {
-    posicao = (dados.length * parte) / 100;
-  }
+const intervalo = require('../intervaloClasse.js');
+const calculaFacContinua = require('../calculaFacContinua.js');
 
-  const posicaoArredondada = Math.round(posicao);
+function medidasSeparatrizesContinua (dados, array, facs, parte, medida) {
+  const posicao = (dados.length * parte) / medida;
   const todosIntervalos = [];
   const frequencia = [];
   const classes = [];
-  let classePesquisada = 0;
-  let facAnterior = 0;
+  let facAnt;
+  let posicaoArredondada = Math.round(posicao);
+  let classePesquisada;
   let vetDados = [];
   let cont = 1;
+
+  if (posicao - posicaoArredondada < 0) {
+    posicaoArredondada--;
+  }
 
   for (let i = 0; i < dados.length; i++) {
     if (dados[i] < dados[0] + array.intervalo * cont) {
@@ -29,24 +26,22 @@ function medidasSeparatrizesContinua (dados, array, facs, parte, medida) {
     }
   }
   classes['classe' + cont] = vetDados;
-
   for (let i = 0; i < cont; i++) {
     if (classes['classe' + (i+1)].indexOf(dados[posicaoArredondada]) > -1) {
-      classePesquisada = i;
+      classePesquisada = i + 1;
     }
   }
-
-  if (classePesquisada > 0) {
-    facAnterior = facs[classePesquisada - 1];
-  }
-
   for (let i = 0; i < array.quantClasse; i++) {
     todosIntervalos[i] = dados[0] + array.intervalo * i;
     frequencia[i] = classes['classe' + (i + 1)].length;
   }
-  return Math.round(
-    todosIntervalos[classePesquisada] + ((posicao - facAnterior) / frequencia[classePesquisada]) * array.intervalo
-    );
+  if (classePesquisada == 1) {
+    facAnt = 0;
+  }else {
+    facAnt = facs[classePesquisada - 2];
+  }
+
+  return  todosIntervalos[classePesquisada - 1] + ((posicao - facAnt) / frequencia[classePesquisada - 1]) * array.intervalo
 
 }
 
