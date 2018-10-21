@@ -13,15 +13,17 @@ const medianaQuantitativaContinua = require('./mediana/medianaQuantitativaContin
 const medidasSeparatrizesDiscreta = require('./medidasSeparatrizes/medidasSeparatrizesDiscreta.js');
 const medianaQualitativa = require('./mediana/medianaQualitativa.js');
 const organizacaoDados = require('./dados/organizacaoDados.js');
-const desvioPadrao = require('./desvioPadrao/desvioPadrao.js');
+const desvioPadraoDiscreta = require('./desvioPadrao/desvioPadrao.js');
 const desvioPadraoContinua = require('./desvioPadrao/desvioPadraoContinua.js');
 const medidasSeparatrizesContinua = require('./medidasSeparatrizes/medidasSeparatrizesContinua.js');
 const mensagemErro = require('./erros/mensagemErroValidacaoDados.js');
 const criaTabela = require('./dom/criaTabela.js');
 const criaGrafico = require('./dom/criaGrafico.js');
 const colocaValor = require('./dom/colocaValor.js');
-const criaDadosTabela = require('./criaDadosTabela.js');
+const criaDadosTabelaDiscreta = require('./criaDadosTabelaDiscreta.js');
+const criaDadosTabelaContinua = require('./criaDadosTabelaContinua.js');
 const manipulaMedidasSeparatrizes = require('./dom/manipulaMedidasSeparatrizes.js');
+const calculaClassesContinua = require('./calculaClassesContinua.js');
 
 //adiciona evento de click ao botão para enviar os dados
 document.querySelector('#comece_agora').addEventListener('click', function(e){
@@ -34,7 +36,8 @@ document.querySelector('#comece_agora').addEventListener('click', function(e){
     tiposPesquisa[i].addEventListener('click', function(event){
       event.preventDefault();
       const inputDados = document.querySelector('#dados').value;
-
+      const tipoDados = this.id;
+      console.log(tipoDados);
       //chama a função para verificar se os dados são validos,
       //se forem validos e numeros, converte para int
       let dados = entradaDados.init(inputDados);
@@ -57,7 +60,10 @@ document.querySelector('#comece_agora').addEventListener('click', function(e){
         let decil;
         let percentil;
         let facs;
-        let arrayIntervalo;
+        let dadosTabela;
+        let desvioPadrao;
+        const arrayIntervalo = intervalo.init(dados);
+        const classes = calculaClassesContinua.init(dados, arrayIntervalo);
         //verifica qual resposta da função que identifica a variavel
         if (variavel == 'pergunta') {
           //se for pergunta, chama a função para gera uma pergunta ao usuario,
@@ -73,18 +79,23 @@ document.querySelector('#comece_agora').addEventListener('click', function(e){
           moda = modaQuantitativaDiscreta.init(fi);
           media = mediaQuantitativaDiscreta.init(dados);
           mediana = medianaQuantitativaDiscreta.init(dados);
+          desvioPadrao = desvioPadraoDiscreta.init(dados, media, tipoDados);
+          dadosTabela = criaDadosTabelaDiscreta.init(fi);
+          criaTabela.init(dadosTabela, variavel);
+          console.log(desvioPadrao);
         }else if(variavel == 'continua'){
-          arrayIntervalo = intervalo.init(dados);
           facs = calculaFacContinua.init(dados, arrayIntervalo);
           moda = modaQuantitativaContinua.init(dados, arrayIntervalo);
           media = mediaQuantitativaContinua.init(dados, arrayIntervalo);
           mediana = medianaQuantitativaContinua.init(dados, facs, arrayIntervalo);
+          desvioPadrao = desvioPadraoContinua.init(dados, media, tipoDados, arrayIntervalo, classes);
+          console.log(desvioPadrao);
+          dadosTabela = criaDadosTabelaContinua.init(classes, arrayIntervalo, dados);
+          criaTabela.init(dadosTabela, variavel);
         }
-        const dadosTabela = criaDadosTabela.init(variavel, fi)
         let lastActive;
-        criaTabela.init(dadosTabela, variavel);
         criaGrafico.init(variavel, fi);
-        colocaValor.init(moda, media, mediana);
+        colocaValor.init(moda, media, mediana, desvioPadrao);
         const slider = document.querySelectorAll('.slider');
         const output = document.querySelectorAll('.output');
         const result = document.querySelectorAll('.result');
