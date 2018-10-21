@@ -2,22 +2,16 @@ const colFrequenciaPercent = ['fr %'];
 const colFac = ['Fac'];
 const colFacPercent = ['Fac %'];
 
-function criaDadosTabela(variavel, fi) {
+function criaDadosTabelaDiscreta(fi) {
   let arrayPrincipal = [];
   const colDados = fi[1].slice();
   colDados.unshift('xi');
   const colFrequencia = fi[0].slice();
   colFrequencia.unshift('fi');
-
-  if (variavel == 'continua') {
-
-  }
   somaVetor(colFrequencia);
   arrayPrincipal = [colDados, colFrequencia, colFrequenciaPercent, colFac, colFacPercent];
   return arrayPrincipal;
-
 }
-
 
 function somaVetor(vetor) {
   let soma = 0;
@@ -32,4 +26,4 @@ function somaVetor(vetor) {
     colFacPercent.push(parseFloat(colFac[i] / soma * 100).toFixed(2) + '%');
   }
 }
-exports.init = criaDadosTabela;
+exports.init = criaDadosTabelaDiscreta;

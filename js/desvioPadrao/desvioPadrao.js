@@ -1,4 +1,5 @@
 function desvioPadrao (dados, media, tipoDados) {
+  console.log(dados);
   const frequencia = dados[0];
   const variaveis = dados[1];
   let desvio = 0;
@@ -10,7 +11,7 @@ function desvioPadrao (dados, media, tipoDados) {
     totFi += frequencia[i];
   }
 
-  if (tipoDados == 'população') {
+  if (tipoDados == 'SENSO') {
     aux++;
   }
 
