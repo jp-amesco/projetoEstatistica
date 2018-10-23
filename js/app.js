@@ -22,6 +22,8 @@ const criaGrafico = require('./dom/criaGrafico.js');
 const colocaValor = require('./dom/colocaValor.js');
 const criaDadosTabela = require('./criaDadosTabela.js');
 const manipulaMedidasSeparatrizes = require('./dom/manipulaMedidasSeparatrizes.js');
+const correlacao = require('./correlacao/correlacao.js');
+const regressao = require('./correlacao/regressao.js');
 
 //adiciona evento de click ao botão para enviar os dados
 document.querySelector('#comece_agora').addEventListener('click', function(e){
