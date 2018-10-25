@@ -12,6 +12,7 @@ const medianaQuantitativaDiscreta = require('./mediana/medianaQuantitativaDiscre
 const medianaQuantitativaContinua = require('./mediana/medianaQuantitativaContinua.js');
 const medidasSeparatrizesDiscreta = require('./medidasSeparatrizes/medidasSeparatrizesDiscreta.js');
 const medianaQualitativa = require('./mediana/medianaQualitativa.js');
+const importaDados = require('./dados/importaDados.js');
 const organizacaoDados = require('./dados/organizacaoDados.js');
 const desvioPadraoDiscreta = require('./desvioPadrao/desvioPadrao.js');
 const desvioPadraoContinua = require('./desvioPadrao/desvioPadraoContinua.js');
@@ -26,96 +27,115 @@ const manipulaMedidasSeparatrizes = require('./dom/manipulaMedidasSeparatrizes.j
 const calculaClassesContinua = require('./calculaClassesContinua.js');
 
 //adiciona evento de click ao botão para enviar os dados
-document.querySelector('#comece_agora').addEventListener('click', function(e){
-  e.preventDefault();
-  document.querySelector('#comece_agora').classList.add('d-none');
+const importArquivo = document.querySelector('#arquivo');
+const btnManual = document.querySelector('#manualmente');
+const inputDados = document.querySelector('#dados');
+const alterarDados = document.querySelector('.alterarDados');
+const btnImport = document.querySelector('#importar');
+
+importArquivo.addEventListener('change', function(e){
+  e.preventDefault;
+  importaDados.init(this, inputDados);
   const todosTiposPesquisa = document.querySelector('#todos_tipos_pesquisa');
   todosTiposPesquisa.classList.remove('d-none');
-  const tiposPesquisa = document.querySelectorAll('.pesquisa');
-  for (let i = 0; i < tiposPesquisa.length; i++) {
-    tiposPesquisa[i].addEventListener('click', function(event){
-      event.preventDefault();
-      const inputDados = document.querySelector('#dados').value;
-      const tipoDados = this.id;
-      console.log(tipoDados);
-      //chama a função para verificar se os dados são validos,
-      //se forem validos e numeros, converte para int
-      let dados = entradaDados.init(inputDados);
-      let variavel;
-      //verifica se a resposta foi algum erro
-      if (dados == 1 || dados == 2) {
-        //chama a função que cria o erro na tela
-        mensagemErro.init(dados);
-      }else{
-        //chama a função para identificar qual é a variavel
-        variavel = identificaVariavel.init(dados);
-        //chama a função de frequencia
-        dados = organizacaoDados.init(dados);
-        const fi = frequencia.init(dados);
-        let moda;
-        let media;
-        let mediana;
-        let quartil;
-        let quintil;
-        let decil;
-        let percentil;
-        let facs;
-        let dadosTabela;
-        let desvioPadrao;
-        const arrayIntervalo = intervalo.init(dados);
-        const classes = calculaClassesContinua.init(dados, arrayIntervalo);
-        //verifica qual resposta da função que identifica a variavel
-        if (variavel == 'pergunta') {
-          //se for pergunta, chama a função para gera uma pergunta ao usuario,
-          //pedindo que ele informe qual a variavel será usada
-          //variavel = geraModalPergunta.init();
-        }
-        if (variavel == 'qualitativa') {
-          //se a variavel for moda, chama os calculos respectivos a essa variavel,
-          //enviando a frequancia como parametro
-          moda = modaQualitativa.init(fi);
-          mediana = medianaQualitativa.init(dados);
-        }else if(variavel == 'discreta') {
-          moda = modaQuantitativaDiscreta.init(fi);
-          media = mediaQuantitativaDiscreta.init(dados);
-          mediana = medianaQuantitativaDiscreta.init(dados);
-          desvioPadrao = desvioPadraoDiscreta.init(dados, media, tipoDados);
-          dadosTabela = criaDadosTabelaDiscreta.init(fi);
-          criaTabela.init(dadosTabela, variavel);
-          console.log(desvioPadrao);
-        }else if(variavel == 'continua'){
-          facs = calculaFacContinua.init(dados, arrayIntervalo);
-          moda = modaQuantitativaContinua.init(dados, arrayIntervalo);
-          media = mediaQuantitativaContinua.init(dados, arrayIntervalo);
-          mediana = medianaQuantitativaContinua.init(dados, facs, arrayIntervalo);
-          desvioPadrao = desvioPadraoContinua.init(dados, media, tipoDados, arrayIntervalo, classes);
-          console.log(desvioPadrao);
-          dadosTabela = criaDadosTabelaContinua.init(classes, arrayIntervalo, dados);
-          criaTabela.init(dadosTabela, variavel);
-        }
-        let lastActive;
-        criaGrafico.init(variavel, fi);
-        colocaValor.init(moda, media, mediana, desvioPadrao);
-        const slider = document.querySelectorAll('.slider');
-        const output = document.querySelectorAll('.output');
-        const result = document.querySelectorAll('.result');
-        manipulaMedidasSeparatrizes.init(slider, result, dados, output);
-        document.querySelector('#menu-tabs').classList.remove('d-none');
-        document.querySelector('#valores').classList.remove('d-none');
-        lastActive = 'tabela';
-        const tabs = document.querySelectorAll('.nav-link');
-        for (let i = 0; i < tabs.length; i++) {
-          tabs[i].addEventListener('click', function(event){
-            event.preventDefault;
-            this.classList.add('active');
-            document.querySelector('#' + this.id).classList.add('active');
-            document.querySelector('#' + lastActive).classList.remove('active');
-            document.querySelector('.' + lastActive).classList.add('d-none');
-            document.querySelector('.' + this.id).classList.remove('d-none');
-            lastActive = this.id;
-          });
-        }
-      }
-    });
-  }
+  alterarDados.classList.remove('d-none');
+  btnImport.classList.add('d-none');
+  btnManual.classList.add('d-none');
 });
+
+
+btnManual.addEventListener('click', function(e) {
+  alterarDados.classList.remove('d-none');
+  const todosTiposPesquisa = document.querySelector('#todos_tipos_pesquisa');
+  todosTiposPesquisa.classList.remove('d-none');
+  inputDados.removeAttribute('disabled');
+  inputDados.value = null;
+  btnImport.classList.add('d-none');
+  this.classList.add('d-none');
+});
+
+
+const tiposPesquisa = document.querySelectorAll('.pesquisa');
+for (let i = 0; i < tiposPesquisa.length; i++) {
+  tiposPesquisa[i].addEventListener('click', function(event){
+    event.preventDefault();
+    const tipoDados = this.id;
+    //chama a função para verificar se os dados são validos,
+    //se forem validos e numeros, converte para int
+    let dados = entradaDados.init(inputDados.value);
+    let variavel;
+    //verifica se a resposta foi algum erro
+    if (dados == 1 || dados == 2) {
+      //chama a função que cria o erro na tela
+      mensagemErro.init(dados);
+    }else{
+      //chama a função para identificar qual é a variavel
+      variavel = identificaVariavel.init(dados);
+      //chama a função de frequencia
+      dados = organizacaoDados.init(dados);
+      const fi = frequencia.init(dados);
+      let moda;
+      let media;
+      let mediana;
+      let quartil;
+      let quintil;
+      let decil;
+      let percentil;
+      let facs;
+      let dadosTabela;
+      let desvioPadrao;
+      const arrayIntervalo = intervalo.init(dados);
+      const classes = calculaClassesContinua.init(dados, arrayIntervalo);
+      //verifica qual resposta da função que identifica a variavel
+      if (variavel == 'pergunta') {
+        //se for pergunta, chama a função para gera uma pergunta ao usuario,
+        //pedindo que ele informe qual a variavel será usada
+        //variavel = geraModalPergunta.init();
+      }
+      if (variavel == 'qualitativa') {
+        //se a variavel for moda, chama os calculos respectivos a essa variavel,
+        //enviando a frequancia como parametro
+        moda = modaQualitativa.init(fi);
+        mediana = medianaQualitativa.init(dados);
+      }else if(variavel == 'discreta') {
+        moda = modaQuantitativaDiscreta.init(fi);
+        media = mediaQuantitativaDiscreta.init(dados);
+        mediana = medianaQuantitativaDiscreta.init(dados);
+        desvioPadrao = desvioPadraoDiscreta.init(fi, media, tipoDados);
+        dadosTabela = criaDadosTabelaDiscreta.init(fi);
+        criaTabela.init(dadosTabela, variavel);
+      }else if(variavel == 'continua'){
+        facs = calculaFacContinua.init(dados, arrayIntervalo);
+        moda = modaQuantitativaContinua.init(dados, arrayIntervalo);
+        media = mediaQuantitativaContinua.init(dados, arrayIntervalo);
+        mediana = medianaQuantitativaContinua.init(dados, facs, arrayIntervalo);
+        desvioPadrao = desvioPadraoContinua.init(dados, media, tipoDados, arrayIntervalo, classes);
+        dadosTabela = criaDadosTabelaContinua.init(classes, arrayIntervalo, dados);
+        criaTabela.init(dadosTabela, variavel);
+      }
+      let lastActive;
+      criaGrafico.init(variavel, fi);
+      colocaValor.init(moda, media, mediana, desvioPadrao);
+      const slider = document.querySelectorAll('.slider');
+      const output = document.querySelectorAll('.output');
+      const result = document.querySelectorAll('.result');
+      manipulaMedidasSeparatrizes.init(slider, result, dados, output);
+      document.querySelector('#menu-tabs').classList.remove('d-none');
+      document.querySelector('#valores').classList.remove('d-none');
+      lastActive = 'tabela';
+      const tabs = document.querySelectorAll('.nav-link');
+      for (let i = 0; i < tabs.length; i++) {
+        tabs[i].addEventListener('click', function(event){
+          event.preventDefault;
+          this.classList.add('active');
+          document.querySelector('#' + this.id).classList.add('active');
+          document.querySelector('#' + lastActive).classList.remove('active');
+          document.querySelector('.' + lastActive).classList.add('d-none');
+          document.querySelector('.' + this.id).classList.remove('d-none');
+          lastActive = this.id;
+        });
+      }
+    }
+  });
+}
+

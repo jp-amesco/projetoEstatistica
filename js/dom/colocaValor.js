@@ -1,4 +1,4 @@
-function colocaValor(moda, media, mediana) {
+function colocaValor(moda, media, mediana, desvioPadrao) {
   let paragrafo;
   let text;
   const linhaValores = document.querySelectorAll('.title-valores');
@@ -43,7 +43,7 @@ function colocaValor(moda, media, mediana) {
           //linhaValores[i].removeChild(desvioParagrafo);
         //}
         paragrafo = document.createElement('p');
-        text = document.createTextNode('a');
+        text = document.createTextNode(desvioPadrao);
         paragrafo.appendChild(text);
         paragrafo.id = 'desvioParagrafo'
         break;
