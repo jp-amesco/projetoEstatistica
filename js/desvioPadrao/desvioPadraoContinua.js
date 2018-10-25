@@ -1,25 +1,10 @@
-function desvioPadraoContinua (dados, media, tipoDados, array) {
+function desvioPadraoContinua (dados, media, tipoDados, array, classes) {
   const aux = [];
-  const classes = [];
   const frequencia = [];
   const mediasClasses = [];
-  let cont = 1;
   let aux2 = 0;
   let totFi = 0;
   let desvio = 0;
-  let vetDados = [];
-
-  for (let i = 0; i < dados.length; i++) {
-    if (dados[i] < dados[0] + array.intervalo * cont) {
-      vetDados.push(dados[i]);
-    }else{
-      classes['classe' + cont] = vetDados;
-      vetDados = [dados[i]];
-      cont++;
-    }
-  }
-  classes['classe' + cont] = vetDados;
-
 
   for (let i = 0; i < array.quantClasse; i++) {
     mediasClasses[i] = ((dados[0] + array.intervalo * i) + dados[0] + array.intervalo * (i + 1)) / 2;
@@ -31,7 +16,7 @@ function desvioPadraoContinua (dados, media, tipoDados, array) {
     desvio += Math.pow(mediasClasses[i] - media, 2) * frequencia[i];
   }
 
-  if (tipoDados == 'população') {
+  if (tipoDados == 'SENSO') {
     aux2++;
   }
 
