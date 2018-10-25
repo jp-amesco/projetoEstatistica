@@ -23,8 +23,9 @@ const colocaValor = require('./dom/colocaValor.js');
 const criaDadosTabelaDiscreta = require('./criaDadosTabelaDiscreta.js');
 const criaDadosTabelaContinua = require('./criaDadosTabelaContinua.js');
 const manipulaMedidasSeparatrizes = require('./dom/manipulaMedidasSeparatrizes.js');
+const correlacao = require('./correlacao/correlacao.js');
+const regressao = require('./correlacao/regressao.js');
 const calculaClassesContinua = require('./calculaClassesContinua.js');
-
 //adiciona evento de click ao botão para enviar os dados
 document.querySelector('#comece_agora').addEventListener('click', function(e){
   e.preventDefault();
