@@ -26,6 +26,8 @@ const colocaValor = require('./dom/colocaValor.js');
 const criaDadosTabelaDiscreta = require('./criaDadosTabelaDiscreta.js');
 const criaDadosTabelaContinua = require('./criaDadosTabelaContinua.js');
 const manipulaMedidasSeparatrizes = require('./dom/manipulaMedidasSeparatrizes.js');
+const correlacao = require('./correlacao/correlacao.js');
+const regressao = require('./correlacao/regressao.js');
 const calculaClassesContinua = require('./calculaClassesContinua.js');
 
 const btnManual = document.querySelector('#manual');//BTN ----ONCLICK
