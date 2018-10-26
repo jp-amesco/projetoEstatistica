@@ -10,10 +10,16 @@
 <body>
   <section class="teste">
     <div class="col-8 m-auto text-center">
-      <h1 class="title">0800Statisticator</h1>
-      <p class="desc">Let we think for you (de graça).</p>
-      <button class="btn btn-lg" id="comece_agora">Clique aqui para começar</button>
-
+      <h1 class="title">Statisticator</h1>
+      <p class="desc">Let we think for you.</p>
+      <div class="buttons-import">
+        <button class="btn btn-large btn-success" id="manual">Inserir manualmente</button>
+        <label for="arquivo" class="btn btn-large btn-primary" id="importar">Importar arquivo</label>
+        <input type='file' class="d-none" name="arquivo" id="arquivo" enctype='multipart/form-data'></input>
+      </div>
+      <div class="reinserirDados">
+        <button class='btn-alterar btn btn-large d-none'>Alterar Dados</button>
+      </div>
     </div>
   </section>
 
@@ -21,8 +27,7 @@
     <section class="content">
       <div class="row">
         <p id="mensagem" class="alert"></p>
-        <label class="insira-dados" for="dados">Insira os dados aqui</label>
-        <input type="text" class="input-group input-dados" id="dados" name="dados">
+        <input type="text" class="input-group input-dados" id="dados" name="dados" disabled>
       </div>
       <div class="tipo-pesquisa">
         <a href="#" class="btn btn-dark pesquisa" id="AMOSTRA">AMOSTRA</a>
@@ -70,7 +75,7 @@
           <div class="col-md-4">
            <label for="sliderQuartil"> Quartil: <span class="output" id="quartil"></span></label>
             <input type="range" min="1" max="4" id="slider Quartil" class="form-control-range slider">
-          <p>Resultado: <span class="result"></span></p>
+            <p>Resultado: <span class="result"></span></p>
           </div>
 
           <div class="col-md-8">

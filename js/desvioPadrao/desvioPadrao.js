@@ -1,7 +1,6 @@
-function desvioPadrao (dados, media, tipoDados) {
-  console.log(dados);
-  const frequencia = dados[0];
-  const variaveis = dados[1];
+function desvioPadrao (fi, media, tipoDados) {
+  const frequencia = fi[0];
+  const variaveis = fi[1];
   let desvio = 0;
   let aux = 0;
   let totFi = 0;
