@@ -1,4 +1,7 @@
 const entradaDados = require('./dados/entradaDados.js');
+const importarDadosManual = require('./dados/importarDadosManual.js');
+const importaDadosArquivo = require('./dados/importaDadosArquivo.js');
+const reinsercaoDados = require('./dados/reinsercaoDados.js');
 const frequencia = require('./frequencia.js');
 const intervalo = require('./intervaloClasse.js');
 const calculaFacContinua = require('./calculaFacContinua.js');
@@ -12,7 +15,6 @@ const medianaQuantitativaDiscreta = require('./mediana/medianaQuantitativaDiscre
 const medianaQuantitativaContinua = require('./mediana/medianaQuantitativaContinua.js');
 const medidasSeparatrizesDiscreta = require('./medidasSeparatrizes/medidasSeparatrizesDiscreta.js');
 const medianaQualitativa = require('./mediana/medianaQualitativa.js');
-const importaDados = require('./dados/importaDados.js');
 const organizacaoDados = require('./dados/organizacaoDados.js');
 const desvioPadraoDiscreta = require('./desvioPadrao/desvioPadrao.js');
 const desvioPadraoContinua = require('./desvioPadrao/desvioPadraoContinua.js');
@@ -26,34 +28,29 @@ const criaDadosTabelaContinua = require('./criaDadosTabelaContinua.js');
 const manipulaMedidasSeparatrizes = require('./dom/manipulaMedidasSeparatrizes.js');
 const calculaClassesContinua = require('./calculaClassesContinua.js');
 
-//adiciona evento de click ao botão para enviar os dados
-const importArquivo = document.querySelector('#arquivo');
-const btnManual = document.querySelector('#manualmente');
-const inputDados = document.querySelector('#dados');
-const alterarDados = document.querySelector('.alterarDados');
-const btnImport = document.querySelector('#importar');
+const btnManual = document.querySelector('#manual');//BTN ----ONCLICK
+const inputArquivo = document.querySelector('#arquivo'); //INPUT ---- CHANGE
+const inputDados = document.querySelector('#dados');//INPUT -----DIGITA DADOS
+const reinserirDados = document.querySelector('.reinserirDados'); //DIV
+const btnImport = document.querySelector('.buttons-import'); //DIV
+const todosTiposPesquisa = document.querySelector('#todos_tipos_pesquisa'); //DIV
 
-importArquivo.addEventListener('change', function(e){
+console.log(todosTiposPesquisa);
+inputArquivo.addEventListener('change', function(e){
   e.preventDefault;
-  importaDados.init(this, inputDados);
-  const todosTiposPesquisa = document.querySelector('#todos_tipos_pesquisa');
-  todosTiposPesquisa.classList.remove('d-none');
-  alterarDados.classList.remove('d-none');
-  btnImport.classList.add('d-none');
-  btnManual.classList.add('d-none');
+  importaDadosArquivo.init(this, inputDados);
 });
 
 
 btnManual.addEventListener('click', function(e) {
-  alterarDados.classList.remove('d-none');
-  const todosTiposPesquisa = document.querySelector('#todos_tipos_pesquisa');
-  todosTiposPesquisa.classList.remove('d-none');
-  inputDados.removeAttribute('disabled');
-  inputDados.value = null;
-  btnImport.classList.add('d-none');
-  this.classList.add('d-none');
+  e.preventDefault;
+  importarDadosManual.init();
 });
 
+reinserirDados.addEventListener('click', function(e) {
+  e.preventDefault;
+  reinsercaoDados.init();
+});
 
 const tiposPesquisa = document.querySelectorAll('.pesquisa');
 for (let i = 0; i < tiposPesquisa.length; i++) {
