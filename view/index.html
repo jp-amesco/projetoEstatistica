@@ -9,18 +9,47 @@
 
 <body>
   <section class="teste">
-    <div class="col-8 m-auto text-center">
-      <h1 class="title">Statisticator</h1>
-      <p class="desc">Let we think for you.</p>
-      <div class="buttons-import">
-        <button class="btn btn-large btn-success" id="manual">Inserir manualmente</button>
-        <label for="arquivo" class="btn btn-large btn-primary" id="importar">Importar arquivo</label>
-        <input type='file' class="d-none" name="arquivo" id="arquivo" enctype='multipart/form-data'></input>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h1 class="title">Statisticator</h1>
+        </div>
       </div>
-      <div class="reinserirDados">
-        <button class='btn-alterar btn btn-large d-none'>Alterar Dados</button>
+
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <p class="desc">Let we think for you.</p>
+        </div>
       </div>
-    </div>
+
+      <div class="col-md-8 text-center ml-auto mr-auto">
+        <div class="row">
+          <div class="col-4">
+            <button class="btn btn-dark" id="estatistica-desc">Estatistica Descritiva</button>
+          </div>
+
+          <div class="col-4">
+            <button class="btn btn-primary" id="probabilidade">Probabilidade</button>
+          </div>
+
+          <div class="col-4">
+            <button class="btn btn-ligth" id='correlacao'>Correlação e Regressão</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-8 d-none text-center ml-auto mr-auto">
+         <div class="row">
+          <div class="col-6">
+            <button class="btn btn-dark" id="estatistica-desc">Estatistica Descritiva</button>
+          </div>
+
+          <div class="col-6">
+            <button class="btn btn-primary" id="probabilidade">Probabilidade</button>
+          </div>
+        </div>
+      </div>
+
+
   </section>
 
   <div class="content d-none container align-content-center" id="todos_tipos_pesquisa">
