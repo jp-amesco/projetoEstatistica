@@ -9,6 +9,8 @@ function addEventButton(abasMenu, menu, insercaoDados, elementClass) {
     }
   }
   document.querySelector('.' + elementClass).classList.add('active');
+  document.querySelector('#btn-iniciais').classList.add('d-none');
+  document.querySelector('#voltar').classList.remove('d-none');
 }
 
 exports.init = addEventButton;
