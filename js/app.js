@@ -31,6 +31,7 @@ const regressao = require('./correlacao/regressao.js');
 const calculaClassesContinua = require('./calculaClassesContinua.js');
 const addEventButtons = require('./dom/addEventButtons.js');
 const resultClickHomeButtons = require('./dom/resultClickHomeButtons.js');
+const calculosCorrelacaoRegressao = require('./correlacao/calculosCorrelacaoRegressao.js');
 
 resultClickHomeButtons.init(addEventButtons);
 const inputDados = document.querySelector('#dados');
@@ -102,12 +103,27 @@ for (let i = 0; i < tiposPesquisa.length; i++) {
       let lastActive;
       criaGrafico.init(variavel, fi);
       colocaValor.init(moda, media, mediana, desvioPadrao);
+
       const slider = document.querySelectorAll('.slider');
       const output = document.querySelectorAll('.output');
       const result = document.querySelectorAll('.result');
       manipulaMedidasSeparatrizes.init(slider, result, dados, output);
+
       document.querySelector('#menu-tabs').classList.remove('d-none');
       document.querySelector('#valores').classList.remove('d-none');
+
+      document.querySelector('.enviar').addEventListener('click', function(e){
+        e.preventDefault;
+        let dependente = document.querySelector('#dependente');
+        let independente = document.querySelector('#independente');
+        dependente = entradaDados.init(dependente.value);
+        independente = entradaDados.init(independente.value);
+        const calculos = calculosCorrelacaoRegressao.init(dependente, independente);
+        const resultCorrelacao = correlacao.init(calculos);
+        const resultRegressao = regressao.init(calculos);
+        console.log(resultRegressao, resultCorrelacao);
+      });
+
       lastActive = 'tabela';
       const tabs = document.querySelectorAll('.nav-link');
       for (let i = 0; i < tabs.length; i++) {

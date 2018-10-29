@@ -87,7 +87,7 @@
         <li class="nav-item"><a id="grafico" class="nav-link not-probability not-cr" href="#">Gráfico</a></li>
         <li class="nav-item"><a id="medidas" class="nav-link not-probability not-cr" href="#">Medidas Separatrizes</a></li>
         <li class="nav-item"><a id="probabilidadeAba" class="nav-link not-cr probabilidade" href="#">Probabilidade</a></li>
-        <li class="nav-item"><a id="cr" class="nav-link not-probability correlacao" href="#">Coreelação e Regressão</a></li>
+        <li class="nav-item"><a id="cr" class="nav-link not-probability correlacao" href="#">Correlação e Regressão</a></li>
       </ul>
       <!-- fim da abas -->
 
@@ -187,7 +187,31 @@
 
       <!-- div correlação e regressão -->
       <div class="cr d-none">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">Options</label>
+          </div>
+          <select class="custom-select" id="correlacao-regressao">
+            <option value="correlacao" selected>Correlação</option>
+            <option value="regressao">Regressão</option>
+            <option value="grafico-cr">Gráfico de Disperção</option>
+          </select>
+         </div>
 
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" id='dependente' placeholder="Variavel Dependente" aria-label="Username" aria-describedby="basic-addon1">
+          <input type="text" class="form-control" id="independente" placeholder="Variavel Independente" aria-label="Username" aria-describedby="basic-addon1">
+          <button class="btn btn-success enviar">Enviar</button>
+        </div>
+
+         <div class="resultados">
+           <h1 class="titulo-resultado"></h1>
+           <p class="paragrafo-resultado"></p>
+         </div>
+
+         <div class="">
+           <div id="grafico-dispercao"></div>
+         </div>
       </div>
       <!-- fim div correlação e regressão -->
     </div>
