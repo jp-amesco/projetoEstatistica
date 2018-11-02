@@ -1,74 +1,81 @@
-/*eslint-disable */
-function CriaGrafico(variavel, fi){
-  const type = DefineTipo(variavel);
-  const options = DefineOptions(type, variavel, 'teste', 'teste1', 'teste2');
-  google.charts.load('current', {'packages': ['corechart']});
-  google.charts.setOnLoadCallback(drawChart);
-  const dadosProntos = PreparaDados(fi);
-  function drawChart() {
-    const data = new google.visualization.DataTable();
-    data.addColumn('string', 'Horizontal');
-    data.addColumn('number', null);
-    data.addRows(dadosProntos);
-    const chart = new google.visualization[type](document.getElementById('myChart'));
-    chart.draw(data, options);
-  }
-}
+const Highcharts = require('highcharts');
 
-function DefineTipo(variavel){
-  if (variavel == 'qualitativa') {
-    return 'PieChart';
-  }
-  return 'ColumnChart';
-}
-
-function PreparaDados(fi) {
-  const dadosProntos = [];
-  for (var i = 0; i < fi[0].length; i++) {
-    const data = [];
-    data.push((fi[1][i]).toString(), fi[0][i]);
-    dadosProntos[i] = data;
-  }
-  return dadosProntos;
-}
-
-function DefineOptions(
-  type,
-  variavel,
-  title = null,
-  labelHorizontal = null,
-  labelBar = null
-) {
-  let options = {};
-  if (type == 'PieChart') {
-   return options = {
-      title: title,
+function createChart(dados, array, classes) {
+  const data = preparaDados(classes, array);
+  const nomesLabels = preparaLabels(dados, array);
+  data.push(0);
+  Highcharts.chart('myChart', {
+  chart: {
+    type: 'column'
+  },
+  title: {
+    text: 'Monthly Average Rainfall'
+  },
+  subtitle: {
+    text: 'Source: WorldClimate.com'
+  },
+  xAxis: {
+    categories: nomesLabels,
+    crosshair: true,
+    labels: {
+      align: 'right'
+    },
+  },
+  yAxis: {
+    min: 0,
+    title: {
+      text: 'Rainfall (mm)'
     }
-  }else if (type == 'ColumnChart' && variavel == 'discreta') {
-    return options = {
-      title: title,
-      hAxis: {
-        title: labelHorizontal
-      },
-      vAxis: {
-        labelBar
-      }
+  },
+  tooltip: {
+    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+      '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+    footerFormat: '</table>',
+    shared: true,
+    useHTML: true
+  },
+  plotOptions: {
+    column: {
+      pointPadding: 0.2,
+      borderWidth: 0,
+      groupPadding: -0.34
     }
-  }else if (type == 'ColumnChart' && variavel == 'continua') {
-    return options = {
-      width: 800,
-      height: 400,
-      title: title,
-      hAxis: {
-        title: labelHorizontal
-      },
-      vAxis: {
-        labelBar
-      },
-      bar: { groupWidth: "100%" }
-    }
+  },
+  series: [{
+    name: 'Tokyo',
+    data: data
+
+  }]
+});
+
+  const labels = document.querySelector('.highcharts-xaxis-labels')
+  let dist = 65;
+  let teste = (15 * 5) - (array.quantClasse * 5) + 42;
+  console.log(labels.children[0].getAttribute('x'));
+  console.log(labels.children[1].getAttribute('x'));
+  for (let i = 1; i <= labels.children.length; i++) {
+    labels.children[i - 1].removeAttribute('x');
+    labels.children[i - 1].setAttribute('x', dist);
+    dist += teste;
   }
 }
-/*eslint-enable */
 
-exports.init = CriaGrafico;
+
+function preparaDados(classes, array) {
+  const dadosCol = [];
+  for (let i = 0; i < array.quantClasse; i++) {
+    dadosCol.push(classes['classe' + (i + 1)].length);
+  }
+  return dadosCol;
+}
+
+function preparaLabels(dados, array) {
+  const nomesLabels = [];
+  for (var i = 0; i <= array.quantClasse; i++) {
+    nomesLabels.push(dados[0] + i * array.intervalo)
+  }
+  return nomesLabels;
+}
+
+exports.init = createChart;

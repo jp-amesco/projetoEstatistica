@@ -71,8 +71,8 @@ for (let i = 0; i < tiposPesquisa.length; i++) {
       let facs;
       let dadosTabela;
       let desvioPadrao;
-      const arrayIntervalo = intervalo.init(dados);
-      const classes = calculaClassesContinua.init(dados, arrayIntervalo);
+      let arrayIntervalo;
+      let classes;
       //verifica qual resposta da função que identifica a variavel
       if (variavel == 'pergunta') {
         //se for pergunta, chama a função para gera uma pergunta ao usuario,
@@ -84,6 +84,7 @@ for (let i = 0; i < tiposPesquisa.length; i++) {
         //enviando a frequancia como parametro
         moda = modaQualitativa.init(fi);
         mediana = medianaQualitativa.init(dados);
+        criaGrafico.init();
       }else if(variavel == 'discreta') {
         moda = modaQuantitativaDiscreta.init(fi);
         media = mediaQuantitativaDiscreta.init(dados);
@@ -91,17 +92,20 @@ for (let i = 0; i < tiposPesquisa.length; i++) {
         desvioPadrao = desvioPadraoDiscreta.init(fi, media, tipoDados);
         dadosTabela = criaDadosTabelaDiscreta.init(fi);
         criaTabela.init(dadosTabela, variavel);
+        criaGrafico.init();
       }else if(variavel == 'continua'){
+        arrayIntervalo = intervalo.init(dados);
         facs = calculaFacContinua.init(dados, arrayIntervalo);
         moda = modaQuantitativaContinua.init(dados, arrayIntervalo);
         media = mediaQuantitativaContinua.init(dados, arrayIntervalo);
         mediana = medianaQuantitativaContinua.init(dados, facs, arrayIntervalo);
+        classes = calculaClassesContinua.init(dados, arrayIntervalo);
         desvioPadrao = desvioPadraoContinua.init(dados, media, tipoDados, arrayIntervalo, classes);
         dadosTabela = criaDadosTabelaContinua.init(classes, arrayIntervalo, dados);
         criaTabela.init(dadosTabela, variavel);
+        criaGrafico.init(dados, arrayIntervalo,classes);
       }
       let lastActive;
-      criaGrafico.init(variavel, fi);
       colocaValor.init(moda, media, mediana, desvioPadrao);
 
       const slider = document.querySelectorAll('.slider');

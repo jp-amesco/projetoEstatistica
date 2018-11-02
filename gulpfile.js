@@ -46,9 +46,9 @@ gulp.task('js', function(){
 	//arquivo que é executado
 	return gulp.src('js/app.js')
 		.pipe($.bro({
-	      transform: [
-	        [eslintify, {'quiet-ignored': true}], babelify
-	      ],
+	      // transform: [
+	      //   [eslintify, {'quiet-ignored': true}], babelify
+	      // ],
 	      error: $.notify.onError('Error: <%= error.message %>'),
 	      debug: true
 	    }))

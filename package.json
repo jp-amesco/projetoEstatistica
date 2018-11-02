@@ -13,7 +13,6 @@
     "eslintify": "^3.1.0",
     "file-saver": "^2.0.0-rc.4",
     "file-system": "^2.2.2",
-    "google-charts": "^1.5.0",
     "gulp": "^3.9.1",
     "gulp-bro": "^1.0.3",
     "gulp-browserify": "^0.5.1",
@@ -26,6 +25,7 @@
     "gulp-pug": "^4.0.1",
     "gulp-sourcemaps": "^2.6.4",
     "gulp-uglify-es": "^1.0.4",
+    "highcharts": "^6.2.0",
     "jquery": "^3.3.1",
     "popper": "^1.0.1"
   },
