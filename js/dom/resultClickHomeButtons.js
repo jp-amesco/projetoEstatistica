@@ -1,3 +1,5 @@
+const btnsCorrelacao = require('./btnsCorrelacao.js');
+
 function resultClickHomeButtons (addEventButtons) {
   const btnInicio = document.querySelectorAll('.btn-inicio');
   const menu =  document.querySelector('#menu-tabs');//div menu
@@ -26,6 +28,8 @@ function resultClickHomeButtons (addEventButtons) {
           menu.classList.remove('d-none')
           abasMenu = document.querySelectorAll('.not-cr');
           addEventButtons.init(abasMenu, menu, insercaoDados, this.id);
+          document.querySelector('.cr').classList.remove('d-none');
+          btnsCorrelacao.init()
           break;
       }
     });

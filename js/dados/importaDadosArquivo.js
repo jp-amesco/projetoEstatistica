@@ -2,7 +2,7 @@ function lerArquivo(arquivo, inputDados) {
   const reader = new FileReader();
   reader.onload = (function(reader)
   {
-    inputDados.value = inputDados.value = reader.target.result;
+    inputDados.value = reader.target.result;
   });
   reader.readAsText(arquivo.files[0]);
 }

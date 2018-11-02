@@ -10,7 +10,38 @@
   }
 }
 
+#destino{
+  overflow: auto;
+  max-height: 300px;
+}
 
+.btns{
+  display: inline-flex;
+  width: 100%;
+
+  .btn{
+    margin: 0px;
+    border-radius: 0;
+
+    &-danger{
+      border-bottom-right-radius: .25rem;
+      border-top-right-radius: .25rem;
+    }
+
+    &-success{
+      border-bottom-left-radius: .25rem;
+      border-top-left-radius: .25rem;
+    }
+  }
+
+  .importa-arquivo{
+    margin-top: 10px;
+
+    .btn{
+      border-radius: .25rem;
+    }
+  }
+}
 
 .desc{
   font-size: 40px;

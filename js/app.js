@@ -127,7 +127,6 @@ for (let i = 0; i < tiposPesquisa.length; i++) {
         const calculos = calculosCorrelacaoRegressao.init(dependente, independente);
         const resultCorrelacao = correlacao.init(calculos);
         const resultRegressao = regressao.init(calculos);
-        console.log(resultRegressao, resultCorrelacao);
       });
 
       lastActive = 'tabela';

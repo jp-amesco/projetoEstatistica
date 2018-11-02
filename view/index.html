@@ -186,32 +186,31 @@
       <!-- fim div probabilidade -->
 
       <!-- div correlação e regressão -->
-      <div class="cr d-none">
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <label class="input-group-text" for="inputGroupSelect01">Options</label>
+      <div class="cr d-none row">
+        <div class="col-4 text-center">
+          <h3>Resultado: <span id='resultCorrelacao'></span></h3>
+          <div id="destino">
+            <div class="input-group mb-3" id="origem">
+              <input type="text" class="form-control dependente" id='dependente' placeholder="Variavel Dependente" aria-label="Username" aria-describedby="basic-addon1">
+              <input type="text" class="form-control independente" id="independente" placeholder="Variavel Independente" aria-label="Recipient's username" aria-describedby="basic-addon2">
+            </div>
           </div>
-          <select class="custom-select" id="correlacao-regressao">
-            <option value="correlacao" selected>Correlação</option>
-            <option value="regressao">Regressão</option>
-            <option value="grafico-cr">Gráfico de Disperção</option>
-          </select>
-         </div>
 
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" id='dependente' placeholder="Variavel Dependente" aria-label="Username" aria-describedby="basic-addon1">
-          <input type="text" class="form-control" id="independente" placeholder="Variavel Independente" aria-label="Username" aria-describedby="basic-addon1">
-          <button class="btn btn-success enviar">Enviar</button>
+          <div class="row btns">
+            <button class="btn btn-success btnCorrelacao w-25" id="add">+</button>
+            <button class="btn btn-primary btnCorrelacao w-50" id="enviar">Enviar Dados</button>
+            <button class="btn btn-danger btnCorrelacao w-25" id="remove">-</button>
+            <div class="importa-arquivo w-100">
+              <label class="btn btn-dark w-100" for="arquivoCorrelacao" id="button-addon2">Importar Arquivo</label>
+              <input class="d-none" name="arquivoCorrelacao" id="arquivoCorrelacao" type="file" enctype='multipart/form-data' accept=".txt, .csv">
+            </div>
+          </div>
         </div>
 
-         <div class="resultados">
-           <h1 class="titulo-resultado"></h1>
-           <p class="paragrafo-resultado"></p>
-         </div>
-
-         <div class="">
-           <div id="grafico-dispercao"></div>
-         </div>
+        <div class="col-8 text-center">
+          <h1>Grafico</h1>
+          <div id="grafico-dispersao"></div>
+        </div>
       </div>
       <!-- fim div correlação e regressão -->
     </div>
