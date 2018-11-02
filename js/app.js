@@ -84,7 +84,9 @@ for (let i = 0; i < tiposPesquisa.length; i++) {
         //enviando a frequancia como parametro
         moda = modaQualitativa.init(fi);
         mediana = medianaQualitativa.init(dados);
-        criaGrafico.init();
+        dadosTabela = criaDadosTabelaDiscreta.init(fi);
+        criaTabela.init(dadosTabela, variavel);
+        criaGrafico.init(variavel, fi);
       }else if(variavel == 'discreta') {
         moda = modaQuantitativaDiscreta.init(fi);
         media = mediaQuantitativaDiscreta.init(dados);
@@ -92,7 +94,7 @@ for (let i = 0; i < tiposPesquisa.length; i++) {
         desvioPadrao = desvioPadraoDiscreta.init(fi, media, tipoDados);
         dadosTabela = criaDadosTabelaDiscreta.init(fi);
         criaTabela.init(dadosTabela, variavel);
-        criaGrafico.init();
+        criaGrafico.init(variavel, fi);
       }else if(variavel == 'continua'){
         arrayIntervalo = intervalo.init(dados);
         facs = calculaFacContinua.init(dados, arrayIntervalo);
@@ -103,7 +105,7 @@ for (let i = 0; i < tiposPesquisa.length; i++) {
         desvioPadrao = desvioPadraoContinua.init(dados, media, tipoDados, arrayIntervalo, classes);
         dadosTabela = criaDadosTabelaContinua.init(classes, arrayIntervalo, dados);
         criaTabela.init(dadosTabela, variavel);
-        criaGrafico.init(dados, arrayIntervalo,classes);
+        criaGrafico.init(variavel, null, dados, arrayIntervalo,classes);
       }
       let lastActive;
       colocaValor.init(moda, media, mediana, desvioPadrao);
