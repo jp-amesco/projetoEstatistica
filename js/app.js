@@ -118,17 +118,6 @@ for (let i = 0; i < tiposPesquisa.length; i++) {
       document.querySelector('#menu-tabs').classList.remove('d-none');
       document.querySelector('#valores').classList.remove('d-none');
 
-      document.querySelector('.enviar').addEventListener('click', function(e){
-        e.preventDefault;
-        let dependente = document.querySelector('#dependente');
-        let independente = document.querySelector('#independente');
-        dependente = entradaDados.init(dependente.value);
-        independente = entradaDados.init(independente.value);
-        const calculos = calculosCorrelacaoRegressao.init(dependente, independente);
-        const resultCorrelacao = correlacao.init(calculos);
-        const resultRegressao = regressao.init(calculos);
-      });
-
       lastActive = 'tabela';
       const tabs = document.querySelectorAll('.nav-link');
       for (let i = 0; i < tabs.length; i++) {

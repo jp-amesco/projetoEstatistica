@@ -186,27 +186,51 @@
       <!-- fim div probabilidade -->
 
       <!-- div correlação e regressão -->
-      <div class="cr d-none row">
-        <div class="col-4 text-center">
-          <h3>Resultado: <span id='resultCorrelacao'></span></h3>
-          <div id="destino">
-            <div class="input-group mb-3" id="origem">
-              <input type="text" class="form-control dependente" id='dependente' placeholder="Variavel Dependente" aria-label="Username" aria-describedby="basic-addon1">
-              <input type="text" class="form-control independente" id="independente" placeholder="Variavel Independente" aria-label="Recipient's username" aria-describedby="basic-addon2">
+      <div class="row">
+        <div class="col-4">
+          <div class="row">
+            <h3>Resultado: <span id='resultCorrelacao'></span></h3>
+          </div>
+          <div class="row">
+            <h4>Seleciona a variavel dependente</h4>
+          </div>
+          <div class="row input-group">
+            <div class="col-6 bg-secondary text-center w-50">
+              <input id="esquerda" name='variavel' type="radio">
             </div>
+            <div class="col-6 bg-secondary text-center w-50">
+              <input id="direita" name="variavel" type="radio">
+            </div>
+          </div>
+          <div class="cr btns d-none row">
+              <div id="destino">
+                <div class="input-group" id="origem">
+                  <input type="text" class="form-control esquerda input-correlacao text-center" >
+                  <input type="text" class="form-control direita input-correlacao text-center">
+                </div>
+              </div>
+
+              <div class="btns">
+                <button class="btn btn-success btnCorrelacao w-25" id="add">+</button>
+                <button class="btn btn-primary btnCorrelacao w-50" id="correlacao">Enviar Dados</button>
+                <button class="btn btn-danger btnCorrelacao w-25" id="remove">-</button>
+              </div>
+              <div class="importa-arquivo w-100">
+                <label class="btn btn-dark w-100" for="arquivoCorrelacao" id="button-addon2">Importar Arquivo</label>
+                <input class="d-none" name="arquivoCorrelacao" id="arquivoCorrelacao" type="file" enctype='multipart/form-data' accept=".txt, .csv">
+              </div>
           </div>
 
-          <div class="row btns">
-            <button class="btn btn-success btnCorrelacao w-25" id="add">+</button>
-            <button class="btn btn-primary btnCorrelacao w-50" id="enviar">Enviar Dados</button>
-            <button class="btn btn-danger btnCorrelacao w-25" id="remove">-</button>
-            <div class="importa-arquivo w-100">
-              <label class="btn btn-dark w-100" for="arquivoCorrelacao" id="button-addon2">Importar Arquivo</label>
-              <input class="d-none" name="arquivoCorrelacao" id="arquivoCorrelacao" type="file" enctype='multipart/form-data' accept=".txt, .csv">
-            </div>
+          <div class="row w-100 mt-3">
+            <select id="select-variavel" class="custom-select w-75">
+              <option value="dependente">Dependente</option>
+              <option value="independente">Independente</option>
+            </select>
+            <input type="text" class="w-25 form-control" id="dadosRegressao">
+            <button class="btn btn-primary w-100 btnCorrelacao" value="null" id="regressao">Enviar</button>
           </div>
+
         </div>
-
         <div class="col-8 text-center">
           <h1>Grafico</h1>
           <div id="grafico-dispersao"></div>

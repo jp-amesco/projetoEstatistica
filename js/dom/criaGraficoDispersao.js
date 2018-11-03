@@ -1,8 +1,70 @@
 const Highcharts = require('highcharts');
 
-function criaGraficodispersao (dados) {
-  const data = preparaDadosParaGrafico(dados);
-  const chart = {
+function criaGraficodispersao (dados, calculos, tipo, regressao, select, newDado) {
+  let chart;
+  let dataReta;
+  const data = preparaDadosParaGraficoCorrelacao(dados);
+  if (tipo == 'correlacao') {
+    chart = optionsCorrelacao(data);
+  } else {
+    dataRegressao = preparaDadosParaGraficoRegressao(data, dados, calculos, select, regressao, newDado)
+    chart = optionsRegressao(data, dataRegressao);
+  }
+  Highcharts.chart('grafico-dispersao', chart);
+}
+
+function preparaDadosParaGraficoCorrelacao(dados) {
+  const dadosParaGrafico = [];
+  for (let i = 0; i < dados.dependente.length; i++) {
+    const aux = [];
+    aux.push(dados.independente[i], dados.dependente[i]);
+    dadosParaGrafico.push(aux);
+  }
+  return dadosParaGrafico;
+}
+
+function preparaDadosParaGraficoRegressao(data, dados, calculos, select, regressao, newDado = null){
+  let secondPoint;
+  const firstPoint = [
+    regressao.init(calculos, 'dependente', dados.dependente[0]),
+    dados.dependente[0],
+  ]
+  const lastPoint = [
+    regressao.init(calculos, 'dependente', dados.dependente[dados.dependente.length - 1]),
+    dados.dependente[dados.dependente.length - 1],
+  ];
+
+  if (isNaN(newDado)) {
+    return [firstPoint, lastPoint];
+  }
+
+  if (select == 'dependente') {
+    secondPoint = [
+      regressao.init(calculos, select, newDado),
+      newDado,
+    ]
+    data.push(secondPoint);
+    if (newDado < dados.dependente[0]) {
+      return [secondPoint, lastPoint];
+    }
+    return [firstPoint, secondPoint];
+  }
+
+  secondPoint = [
+    newDado,
+    regressao.init(calculos, select, newDado),
+  ];
+  data.push(secondPoint);
+
+  if (newDado < dados.independente[0]) {
+    return [secondPoint, lastPoint];
+  }
+
+  return [firstPoint, secondPoint];
+}
+
+function optionsCorrelacao(data) {
+  return {
     chart: {
       type: 'scatter',
       zoomType: 'xy'
@@ -67,16 +129,44 @@ function criaGraficodispersao (dados) {
       data: data
     }]
   }
-  Highcharts.chart('grafico-dispersao', chart);
 }
 
-function preparaDadosParaGrafico(dados) {
-  const dadosParaGrafico = [];
-  for (let i = 0; i < dados.dependente.length; i++) {
-    const aux = [];
-    aux.push(dados.dependente[i], dados.independente[i]);
-    dadosParaGrafico.push(aux);
+function optionsRegressao(data, dataRegressao) {
+  // let novaData = [];
+  // for (var i = 0; i < data.length; i++) {
+  //   novaData.push(data[i][1]);
+  // }
+  return {
+    xAxis: {
+      min: 0,
+    },
+    yAxis: {
+      min: 0
+    },
+    title: {
+      text: 'Scatter plot with regression line'
+    },
+    series: [{
+      type: 'line',
+      name: 'Regression Line',
+      data: dataRegressao,
+      marker: {
+        enabled: false
+      },
+      states: {
+        hover: {
+          lineWidth: 0
+        }
+      },
+      enableMouseTracking: false
+    }, {
+      type: 'scatter',
+      name: 'Observations',
+      data: data,
+      marker: {
+        radius: 4
+      }
+    }]
   }
-  return dadosParaGrafico;
 }
 exports.init = criaGraficodispersao;

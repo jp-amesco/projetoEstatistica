@@ -5,6 +5,7 @@ const calculosCorrelacaoRegressao = require('../correlacao/calculosCorrelacaoReg
 const correlacao = require('../correlacao/correlacao.js');
 const criaGraficoDispersao = require('../dom/criaGraficoDispersao.js');
 const lerArquivoCorrelacao = require('../dados/lerArquivoCorrelacao.js');
+const regressao = require('../correlacao/regressao.js');
 
 function btnscorrelacao() {
   const btnAddRemove = document.querySelectorAll('.btnCorrelacao');
@@ -16,13 +17,16 @@ function btnscorrelacao() {
       } else if(this.id == 'remove'){
         removeCampo.init();
       } else {
-        const dependente = document.querySelectorAll('.dependente')
-        const independente = document.querySelectorAll('.independente')
-        const dadosPreparados = preparaDadosCorrelacao.init(dependente, independente);
+        const direita = document.querySelectorAll('.direita');
+        const esquerda = document.querySelectorAll('.esquerda');
+        const radio = document.getElementsByName('variavel');
+        const select = document.querySelector('#select-variavel').value;
+        const inputNewDado = parseInt(document.querySelector('#dadosRegressao').value);
+        const dadosPreparados = preparaDadosCorrelacao.init(direita, esquerda, radio);
         const calculos = calculosCorrelacaoRegressao.init(dadosPreparados.dependente, dadosPreparados.independente);
         const resultCorrelacao = correlacao.init(calculos);
         document.querySelector('#resultCorrelacao').innerHTML = resultCorrelacao + '%';
-        criaGraficoDispersao.init(dadosPreparados);
+        criaGraficoDispersao.init(dadosPreparados, calculos, this.id, regressao, select, inputNewDado);
       }
     });
   }
