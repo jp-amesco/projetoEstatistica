@@ -32,6 +32,7 @@ const calculaClassesContinua = require('./calculaClassesContinua.js');
 const addEventButtons = require('./dom/addEventButtons.js');
 const resultClickHomeButtons = require('./dom/resultClickHomeButtons.js');
 const calculosCorrelacaoRegressao = require('./correlacao/calculosCorrelacaoRegressao.js');
+const geraModalPergunta = require('./dom/geraModal.js');
 
 resultClickHomeButtons.init(addEventButtons);
 const inputDados = document.querySelector('#dados');
@@ -77,7 +78,7 @@ for (let i = 0; i < tiposPesquisa.length; i++) {
       if (variavel == 'pergunta') {
         //se for pergunta, chama a função para gera uma pergunta ao usuario,
         //pedindo que ele informe qual a variavel será usada
-        //variavel = geraModalPergunta.init();
+        variavel = geraModalPergunta.init();
       }
       if (variavel == 'qualitativa') {
         //se a variavel for moda, chama os calculos respectivos a essa variavel,
