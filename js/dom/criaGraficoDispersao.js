@@ -1,13 +1,13 @@
 const Highcharts = require('highcharts');
 
-function criaGraficodispersao (dados, calculos, tipo, regressao, select, newDado) {
+function criaGraficodispersao (dados, calculos, tipo, regressao, select, newDado, relacaoVariaveis) {
   let chart;
   let dataReta;
   const data = preparaDadosParaGraficoCorrelacao(dados);
   if (tipo == 'correlacao') {
     chart = optionsCorrelacao(data);
   } else {
-    dataRegressao = preparaDadosParaGraficoRegressao(data, dados, calculos, select, regressao, newDado)
+    dataRegressao = preparaDadosParaGraficoRegressao(data, dados, calculos, select, regressao, relacaoVariaveis, newDado)
     chart = optionsRegressao(data, dataRegressao);
   }
   Highcharts.chart('grafico-dispersao', chart);
@@ -23,7 +23,7 @@ function preparaDadosParaGraficoCorrelacao(dados) {
   return dadosParaGrafico;
 }
 
-function preparaDadosParaGraficoRegressao(data, dados, calculos, select, regressao, newDado = null){
+function preparaDadosParaGraficoRegressao(data, dados, calculos, select, regressao, relacaoVariaveis, newDado = null){
   let secondPoint;
   const firstPoint = [
     regressao.init(calculos, 'dependente', dados.dependente[0]),
@@ -55,11 +55,18 @@ function preparaDadosParaGraficoRegressao(data, dados, calculos, select, regress
     regressao.init(calculos, select, newDado),
   ];
   data.push(secondPoint);
+  console.log(relacaoVariaveis);
+  if (relacaoVariaveis == 'inversamente') {
+    if (newDado > dados.independente[0]) {
+      return [secondPoint, lastPoint];
+    } else if(newDado < dados.independente[dados.independente.length - 1]) {
+      return [firstPoint, secondPoint];
+    }
+  }
 
   if (newDado < dados.independente[0]) {
     return [secondPoint, lastPoint];
   }
-
   return [firstPoint, secondPoint];
 }
 
