@@ -1,29 +1,57 @@
 .teste {
   background-image: url('../images/2.jpg');
   height: 300px;
+  margin-bottom: 50px;
+
+  .title{
+    font-size: 100px;
+    margin: 10px;
+    color: #fff;
+  }
 }
 
-.title{
-  font-size: 100px;
-  margin: 10px;
-  color: #fff;
+#destino{
+  overflow: auto;
+  max-height: 300px;
+}
+
+.input-correlacao{
+  border-radius: 0;
+}
+
+
+
+.btns{
+  display: inline-flex;
+  width: 100%;
+
+  .btn{
+    margin: 0px;
+    margin-top: 10px;
+    border-radius: 0;
+
+    &-danger{
+      border-bottom-right-radius: .25rem;
+      border-top-right-radius: .25rem;
+    }
+
+    &-success{
+      border-bottom-left-radius: .25rem;
+      border-top-left-radius: .25rem;
+    }
+  }
+
+  .importa-arquivo{
+
+    .btn{
+      border-radius: .25rem;
+    }
+  }
 }
 
 .desc{
   font-size: 40px;
   color: #fff;
-}
-
-.insira-dados{
-  text-align: center;
-  width: 100%;
-  font-size: 30px;
-  font-weight: bold;
-}
-
-.input-dados{
-  margin: auto;
-  width: 50%;
 }
 
 .tipo-pesquisa{

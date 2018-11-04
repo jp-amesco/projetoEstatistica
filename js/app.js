@@ -29,29 +29,16 @@ const manipulaMedidasSeparatrizes = require('./dom/manipulaMedidasSeparatrizes.j
 const correlacao = require('./correlacao/correlacao.js');
 const regressao = require('./correlacao/regressao.js');
 const calculaClassesContinua = require('./calculaClassesContinua.js');
+const addEventButtons = require('./dom/addEventButtons.js');
+const resultClickHomeButtons = require('./dom/resultClickHomeButtons.js');
+const calculosCorrelacaoRegressao = require('./correlacao/calculosCorrelacaoRegressao.js');
 
-const btnManual = document.querySelector('#manual');//BTN ----ONCLICK
-const inputArquivo = document.querySelector('#arquivo'); //INPUT ---- CHANGE
-const inputDados = document.querySelector('#dados');//INPUT -----DIGITA DADOS
-const reinserirDados = document.querySelector('.reinserirDados'); //DIV
-const btnImport = document.querySelector('.buttons-import'); //DIV
-const todosTiposPesquisa = document.querySelector('#todos_tipos_pesquisa'); //DIV
-
-console.log(todosTiposPesquisa);
+resultClickHomeButtons.init(addEventButtons);
+const inputDados = document.querySelector('#dados');
+const inputArquivo = document.querySelector('#arquivo');
 inputArquivo.addEventListener('change', function(e){
   e.preventDefault;
   importaDadosArquivo.init(this, inputDados);
-});
-
-
-btnManual.addEventListener('click', function(e) {
-  e.preventDefault;
-  importarDadosManual.init();
-});
-
-reinserirDados.addEventListener('click', function(e) {
-  e.preventDefault;
-  reinsercaoDados.init();
 });
 
 const tiposPesquisa = document.querySelectorAll('.pesquisa');
@@ -68,6 +55,7 @@ for (let i = 0; i < tiposPesquisa.length; i++) {
       //chama a função que cria o erro na tela
       mensagemErro.init(dados);
     }else{
+      document.querySelector('.insercaoDados').classList.add('d-none');
       //chama a função para identificar qual é a variavel
       variavel = identificaVariavel.init(dados);
       //chama a função de frequencia
@@ -83,8 +71,8 @@ for (let i = 0; i < tiposPesquisa.length; i++) {
       let facs;
       let dadosTabela;
       let desvioPadrao;
-      const arrayIntervalo = intervalo.init(dados);
-      const classes = calculaClassesContinua.init(dados, arrayIntervalo);
+      let arrayIntervalo;
+      let classes;
       //verifica qual resposta da função que identifica a variavel
       if (variavel == 'pergunta') {
         //se for pergunta, chama a função para gera uma pergunta ao usuario,
@@ -96,6 +84,9 @@ for (let i = 0; i < tiposPesquisa.length; i++) {
         //enviando a frequancia como parametro
         moda = modaQualitativa.init(fi);
         mediana = medianaQualitativa.init(dados);
+        dadosTabela = criaDadosTabelaDiscreta.init(fi);
+        criaTabela.init(dadosTabela, variavel);
+        criaGrafico.init(variavel, fi);
       }else if(variavel == 'discreta') {
         moda = modaQuantitativaDiscreta.init(fi);
         media = mediaQuantitativaDiscreta.init(dados);
@@ -103,24 +94,30 @@ for (let i = 0; i < tiposPesquisa.length; i++) {
         desvioPadrao = desvioPadraoDiscreta.init(fi, media, tipoDados);
         dadosTabela = criaDadosTabelaDiscreta.init(fi);
         criaTabela.init(dadosTabela, variavel);
+        criaGrafico.init(variavel, fi);
       }else if(variavel == 'continua'){
+        arrayIntervalo = intervalo.init(dados);
         facs = calculaFacContinua.init(dados, arrayIntervalo);
         moda = modaQuantitativaContinua.init(dados, arrayIntervalo);
         media = mediaQuantitativaContinua.init(dados, arrayIntervalo);
         mediana = medianaQuantitativaContinua.init(dados, facs, arrayIntervalo);
+        classes = calculaClassesContinua.init(dados, arrayIntervalo);
         desvioPadrao = desvioPadraoContinua.init(dados, media, tipoDados, arrayIntervalo, classes);
         dadosTabela = criaDadosTabelaContinua.init(classes, arrayIntervalo, dados);
         criaTabela.init(dadosTabela, variavel);
+        criaGrafico.init(variavel, null, dados, arrayIntervalo,classes);
       }
       let lastActive;
-      criaGrafico.init(variavel, fi);
       colocaValor.init(moda, media, mediana, desvioPadrao);
+
       const slider = document.querySelectorAll('.slider');
       const output = document.querySelectorAll('.output');
       const result = document.querySelectorAll('.result');
       manipulaMedidasSeparatrizes.init(slider, result, dados, output);
+
       document.querySelector('#menu-tabs').classList.remove('d-none');
       document.querySelector('#valores').classList.remove('d-none');
+
       lastActive = 'tabela';
       const tabs = document.querySelectorAll('.nav-link');
       for (let i = 0; i < tabs.length; i++) {
@@ -128,9 +125,9 @@ for (let i = 0; i < tiposPesquisa.length; i++) {
           event.preventDefault;
           this.classList.add('active');
           document.querySelector('#' + this.id).classList.add('active');
-          document.querySelector('#' + lastActive).classList.remove('active');
           document.querySelector('.' + lastActive).classList.add('d-none');
           document.querySelector('.' + this.id).classList.remove('d-none');
+          document.querySelector('#' + lastActive).classList.remove('active');
           lastActive = this.id;
         });
       }

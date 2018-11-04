@@ -5,7 +5,7 @@ function recebeDados(dados = null)
   if (dados == null || dados.length <= 1) {
     return 1;
   }
-  const newDados = dados.split(',').map(function(item){
+  const newDados = dados.split(/[;,\ ]/gm).map(function(item){
     return item.trim();
   });
 

@@ -46,11 +46,11 @@ gulp.task('js', function(){
 	//arquivo que é executado
 	return gulp.src('js/app.js')
 		.pipe($.bro({
-	      transform: [
-	        [eslintify, {'quiet-ignored': true}], babelify
-	      ],
-	      error: $.notify.onError('Error: <%= error.message %>'),
-	      debug: true
+	      // transform: [
+	      //   [eslintify, {'quiet-ignored': true}], babelify
+	      // ],
+	    //   error: $.notify.onError('Error: <%= error.message %>'),
+	    //   debug: true
 	    }))
 		.pipe(sourcemaps.init())//biblioteca para facilitar o debug pelo navegador
 		.pipe(concat('app.min.js'))//minifica o arquivo executado e cria um novo
@@ -62,10 +62,10 @@ gulp.task('js', function(){
 //tarefa que fica monitoriando qualquer mudança nos arquivos js
 gulp.task('watch', function(){
 	//arquivos monitorados
-	gulp.watch('js/**/*.js', ['js', 'testes']);
-	gulp.watch('testes/**/*.js', ['testes'])
+	gulp.watch('js/**/*.js', ['js']);
+	// gulp.watch('testes/**/*.js', ['testes']);
 	gulp.watch('css/**/*.less', ['css']);
 });
 
 //tarefas executadas na primeira vez que rodamos o comando gulp
-gulp.task('default', ['js', 'css', 'testes', 'watch']);
+gulp.task('default', ['js', 'css', 'watch']);
