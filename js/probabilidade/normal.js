@@ -44,39 +44,47 @@ function normal(media,desvio_padrao,ponto,ponto2 == null, tipo){
 	'}';
 	const itens = JSON.parse(obj);
 	let probabilidade = 0;
-	let item = 0;
+	let item = parseInt(buscaItem(calculaPosicao(media,desvio_padrao,ponto).toString()));
+	let item2 = parseInt(buscaItem(calculaPosicao(media,desvio_padrao,ponto2).toString()));
 
 	if(tipo == "menor"){
 		if(ponto > media){
-			item = calculaPosicao(media, desvio_padrao, ponto);
-			probabilidade = (parseInt(buscaItem(item.toString())) + 0.5) * 100;
+			probabilidade = (item + 0.5) * 100;
 		}else{
-			item = calculaPosicao(media, desvio_padrao, ponto);
-			probabilidade = (0.5 - parseInt(buscaItem(item.toString()))) * 100;
+			probabilidade = (0.5 - item) * 100;
 		}
 
 	}else if(tipo == "maior"){
 		if(ponto < media){
-			item = calculaPosicao(media, desvio_padrao, ponto);
-			probabilidade = (parseInt(buscaItem(item.toString())) + 0.5) * 100;
+			probabilidade = (item + 0.5) * 100;
 		}else{
-			item = calculaPosicao(media, desvio_padrao, ponto);
-			probabilidade = (0.5 - parseInt(buscaItem(item.toString()))) * 100;
+			probabilidade = (0.5 - item) * 100;
 		}
 
 	}else if(tipo == "entre"){
 		if(ponto == media){
-			item = calculaPosicao(media, desvio_padrao, ponto2);
-			probabilidade = (0.5 - parseInt(buscaItem(item.toString()))) * 100;
+			probabilidade = (0.5 - item2) * 100;
 		}else if(ponto2 == media){
-			item = calculaPosicao(media, desvio_padrao, ponto);
-			probabilidade = (0.5 - parseInt(buscaItem(item.toString()))) * 100;
+			probabilidade = (0.5 - item) * 100;
+		}else if(ponto > media && ponto2 > media){
+			probabilidade = (item2 - item) * 100;
+		}else if(ponto < media && ponto2 < media){
+			probabilidade = (item - item2) * 100;
 		}else{
-			
+			probabilidade = (item + item2) * 100;
 		}
-
 	}else{
-
+		if(ponto2 < media){
+			probabilidade = (1 - (item - item2)) * 100;
+		}else if(ponto > media){
+			probabilidade = (1 - (item2 - item)) * 100;
+		}else if(ponto == media){
+			probabilidade = (1 - item2) * 100;
+		}else if(ponto2 == media){
+			probabilidade = (1 - item) * 100;
+		}else{
+			probabilidade = (1 - (item + item2)) * 100;
+		}
 	}
 
 	return probabilidade;
