@@ -2,15 +2,16 @@ const Highcharts = require('highcharts');
 
 function createChart(variavel, fi, dados = null, array = null, classes = null) {
   const data = preparaDados(classes, array, variavel, fi);
-  // const responseLabels = preparaLabels(dados, array, variavel);
-  console.log(data);
-  const chart = defineGrafico(null, data, variavel);
-  // const width = 810 - responseLabels[1] * -2;
-  // data.push(0);
+  const chart = defineGrafico(data, variavel, array);
+
   Highcharts.chart('myChart', chart);
-  // const widthChart = width.toString() + 'px';
-  // document.querySelector('.highcharts-container').style.width = widthChart;
-  // document.querySelector('.highcharts-credits').classList.add('d-none');
+  if (variavel == 'continua') {
+    const responseLabels = preparaLabels(data, array, variavel);
+    const width = 810 - responseLabels[1] * -2;
+    const widthChart = width.toString() + 'px';
+    document.querySelector('.highcharts-container').style.width = widthChart;
+    document.querySelector('.highcharts-credits').classList.add('d-none');
+  }
 }
 
 
@@ -57,14 +58,16 @@ function preparaLabels(dados, array) {
   return response;
 }
 
-function defineGrafico(responseLabels, data, variavel) {
+function defineGrafico(data, variavel, array) {
   if (variavel == 'continua') {
+    const responseLabels = preparaLabels(data, array, variavel);
+    data.push(0);
     return {
       chart: {
         type: 'column'
       },
       title: {
-        text: title
+        text: 'title'
       },
       subtitle: {
         text: 'Source: WorldClimate.com'
@@ -72,7 +75,7 @@ function defineGrafico(responseLabels, data, variavel) {
       xAxis: {
         categories: responseLabels[0],
         labels: {
-          x: responseLabels[1],
+          x: responseLabels[0],
         },
       },
       yAxis: {

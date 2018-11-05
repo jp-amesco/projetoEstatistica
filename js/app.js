@@ -32,6 +32,7 @@ const calculaClassesContinua = require('./calculaClassesContinua.js');
 const addEventButtons = require('./dom/addEventButtons.js');
 const resultClickHomeButtons = require('./dom/resultClickHomeButtons.js');
 const calculosCorrelacaoRegressao = require('./correlacao/calculosCorrelacaoRegressao.js');
+const btnsCorrelacao = require('./dom/btnsCorrelacao.js');
 
 resultClickHomeButtons.init(addEventButtons);
 const inputDados = document.querySelector('#dados');
@@ -117,6 +118,7 @@ for (let i = 0; i < tiposPesquisa.length; i++) {
 
       document.querySelector('#menu-tabs').classList.remove('d-none');
       document.querySelector('#valores').classList.remove('d-none');
+      btnsCorrelacao.init()
 
       lastActive = 'tabela';
       const tabs = document.querySelectorAll('.nav-link');
