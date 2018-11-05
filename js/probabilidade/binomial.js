@@ -1,4 +1,5 @@
-function probab(n,p,q,k_min,k_max){
+//result = probabilidade | media | desvio padrao
+function binomial(n,p,q,k_min,k_max){
 	let final = 0;
 	let result = [];
 	let analise_combinatoria =0;
