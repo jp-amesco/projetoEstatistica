@@ -96,5 +96,8 @@ function buscaItem(item){
 
 function calculaPosicao(media, desvio_padrao, ponto){
 	let z = Math.abs((ponto - media) / desvio_padrao);
+	if(z > 3.99){
+		z = 3.99;
+	}
 	return z.toFixed(2);
 }
