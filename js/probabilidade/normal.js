@@ -1,4 +1,6 @@
-function normal(media,desvio_padrao,ponto,ponto2 == null, tipo){
+function normal(media,desvio_padrao,tipo,ponto,ponto2 = null){
+	let item = parseFloat(buscaItem(calculaPosicao(media,desvio_padrao,ponto).toString()));
+	let item2 = parseFloat(buscaItem(calculaPosicao(media,desvio_padrao,ponto2).toString()));
 	const obj = 
 	'{' + 
 		'"0.00":"0.0000","0.01":"0.0040","0.02":"0.0080","0.03":"0.0120","0.04":"0.0160","0.05":"0.0199","0.06":"0.0239","0.07":"0.0279","0.08":"0.0319","0.09":"0.0359",'+
@@ -44,8 +46,6 @@ function normal(media,desvio_padrao,ponto,ponto2 == null, tipo){
 	'}';
 	const itens = JSON.parse(obj);
 	let probabilidade = 0;
-	let item = parseInt(buscaItem(calculaPosicao(media,desvio_padrao,ponto).toString()));
-	let item2 = parseInt(buscaItem(calculaPosicao(media,desvio_padrao,ponto2).toString()));
 
 	if(tipo == "menor"){
 		if(ponto > media){
