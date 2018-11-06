@@ -4,12 +4,12 @@ function binomial(n,p,q,k_min,k_max){
 	let result = [];
 	let analise_combinatoria =0;
 	for(let i = k_min; i <= k_max; i++){
-		analise_combinatoria = combinatoria(n,k);
-		final += analise_combinatoria * Math.pow(p,k) * Math.pow(q,(n-k));
+		analise_combinatoria = combinatoria(n,i);
+		final += (analise_combinatoria * Math.pow(p,i) * Math.pow(q,(n-i))) * 100;
 	}
-	result.push(final);
-	result.push(media(n,p));
-	result.push(desvio_padrao(n,p,q));
+	result.push(final.toFixed(2));
+	result.push(media(n,p).toFixed(2));
+	result.push(desvioPadrao(n,p,q).toFixed(2));
 	return result;
 }
 
