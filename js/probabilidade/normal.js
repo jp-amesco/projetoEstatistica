@@ -1,6 +1,52 @@
 function normal(media,desvio_padrao,tipo,ponto,ponto2 = null){
+	let probabilidade = 0;
 	let item = parseFloat(buscaItem(calculaPosicao(media,desvio_padrao,ponto).toString()));
 	let item2 = parseFloat(buscaItem(calculaPosicao(media,desvio_padrao,ponto2).toString()));
+
+	if(tipo == "menor"){
+		if(ponto > media){
+			probabilidade = (item + 0.5) * 100;
+		}else{
+			probabilidade = (0.5 - item) * 100;
+		}
+
+	}else if(tipo == "maior"){
+		if(ponto < media){
+			probabilidade = (item + 0.5) * 100;
+		}else{
+			probabilidade = (0.5 - item) * 100;
+		}
+
+	}else if(tipo == "entre"){
+		if(ponto == media){
+			probabilidade = item2 * 100;
+		}else if(ponto2 == media){
+			probabilidade = item * 100;
+		}else if(ponto > media && ponto2 > media){
+			probabilidade = (item2 - item) * 100;
+		}else if(ponto < media && ponto2 < media){
+			probabilidade = (item - item2) * 100;
+		}else{
+			probabilidade = (item + item2) * 100;
+		}
+	}else{
+		if(ponto2 < media){
+			probabilidade = (1 - (item - item2)) * 100;
+		}else if(ponto > media){
+			probabilidade = (1 - (item2 - item)) * 100;
+		}else if(ponto == media){
+			probabilidade = (1 - item2) * 100;
+		}else if(ponto2 == media){
+			probabilidade = (1 - item) * 100;
+		}else{
+			probabilidade = (1 - (item + item2)) * 100;
+		}
+	}
+
+	return probabilidade.toFixed(2);
+}
+
+function buscaItem(item){
 	const obj = 
 	'{' + 
 		'"0.00":"0.0000","0.01":"0.0040","0.02":"0.0080","0.03":"0.0120","0.04":"0.0160","0.05":"0.0199","0.06":"0.0239","0.07":"0.0279","0.08":"0.0319","0.09":"0.0359",'+
@@ -44,53 +90,9 @@ function normal(media,desvio_padrao,tipo,ponto,ponto2 = null){
 		'"3.80":"0.4999","3.81":"0.4999","3.82":"0.4999","3.83":"0.4999","3.84":"0.4999","3.85":"0.4999","3.86":"0.4999","3.87":"0.4999","3.88":"0.4999","3.89":"0.4999",'+
 		'"3.90":"0.5000","3.91":"0.5000","3.92":"0.5000","3.93":"0.5000","3.94":"0.5000","3.95":"0.5000","3.96":"0.5000","3.97":"0.5000","3.98":"0.5000","3.99": "0.5000"'+
 	'}';
+
 	const itens = JSON.parse(obj);
-	let probabilidade = 0;
 
-	if(tipo == "menor"){
-		if(ponto > media){
-			probabilidade = (item + 0.5) * 100;
-		}else{
-			probabilidade = (0.5 - item) * 100;
-		}
-
-	}else if(tipo == "maior"){
-		if(ponto < media){
-			probabilidade = (item + 0.5) * 100;
-		}else{
-			probabilidade = (0.5 - item) * 100;
-		}
-
-	}else if(tipo == "entre"){
-		if(ponto == media){
-			probabilidade = (0.5 - item2) * 100;
-		}else if(ponto2 == media){
-			probabilidade = (0.5 - item) * 100;
-		}else if(ponto > media && ponto2 > media){
-			probabilidade = (item2 - item) * 100;
-		}else if(ponto < media && ponto2 < media){
-			probabilidade = (item - item2) * 100;
-		}else{
-			probabilidade = (item + item2) * 100;
-		}
-	}else{
-		if(ponto2 < media){
-			probabilidade = (1 - (item - item2)) * 100;
-		}else if(ponto > media){
-			probabilidade = (1 - (item2 - item)) * 100;
-		}else if(ponto == media){
-			probabilidade = (1 - item2) * 100;
-		}else if(ponto2 == media){
-			probabilidade = (1 - item) * 100;
-		}else{
-			probabilidade = (1 - (item + item2)) * 100;
-		}
-	}
-
-	return probabilidade;
-}
-
-function buscaItem(item){
 	return itens[item]; 
 }
 
