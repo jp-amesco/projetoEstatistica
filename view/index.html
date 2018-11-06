@@ -92,7 +92,7 @@
       <!-- fim da abas -->
 
       <!-- div da aba tabela -->
-      <div class="tabela row">
+      <div class="tabela row d-none">
         <!-- div com a tabela -->
         <div class="col-9">
           <table class="table table-striped table-dark"></table>
@@ -180,8 +180,24 @@
       <!-- fim div aba medidas separatrizes -->
 
       <!-- div probabilidade -->
-      <div class="probabilidadeAba d-none">
+      <div class="probabilidadeAba">
+        <select class="custom-select">
+          <option>Distribuição Binomial</option>
+          <option>Distribuição Normal</option>
+          <option>Distribuição Uniforme</option>
+        </select>
+        <div class="row">
+          <div class="col-6">
 
+            <label for="">Média</label>
+            <input type="text" class="form-control">
+          </div>
+
+          <div class="col-6">
+            <label for="">Desvio Padrão</label>
+            <input type="text" class="form-control">
+          </div>
+        </div>
       </div>
       <!-- fim div probabilidade -->
 

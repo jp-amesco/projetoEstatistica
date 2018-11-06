@@ -37,12 +37,7 @@ function resultClickHomeButtons (addEventButtons) {
   }
 
   voltar.addEventListener('click', function(e){
-    e.preventDefault;
-    document.querySelector('#btn-iniciais').classList.remove('d-none');
-    this.classList.add('d-none');
-    cr.classList.add('d-none');
-    menu.classList.add('d-none');
-    insercaoDados.classList.add('d-none');
+    window.location.reload()
   });
 }
 
