@@ -1,5 +1,5 @@
 //result = probabilidade | media | desvio padrao | coeficiente de variação
-function uniforme(a,b,tipo,ponto,ponto2 == null){
+function uniforme(a,b,tipo,ponto,ponto2 = null){
 	let intervalo = 0;
 	let probabilidade = 0;
 	let result = [];
@@ -18,8 +18,8 @@ function uniforme(a,b,tipo,ponto,ponto2 == null){
 
 	result.push(probabilidade.toFixed(2));
 	result.push(media(a,b));
-	result.push(desvio_padrao(a,b));
-	result.push(coeficiente_variacao(a,b));
+	result.push(desvioPadrao(a,b));
+	result.push(coeficienteVariacao(a,b));
 
 	return result;
 }
@@ -35,8 +35,8 @@ function desvioPadrao(a,b){
 }
 
 function coeficienteVariacao(a,b){
-	let desvio = desvio_padrao(a,b);
-	let media = media(a,b);
-	let coef = ((desvio / media)*100);
+	let desvio = desvioPadrao(a,b);
+	let med = media(a,b);
+	let coef = ((desvio / med)*100);
 	return coef.toFixed(2);
 }
