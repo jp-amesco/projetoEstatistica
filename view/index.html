@@ -239,11 +239,11 @@
 
           <div class="row w-100 mt-3 d-none" id="div-regressao">
             <select id="select-variavel" class="custom-select w-75">
-              <option value="dependente">Dependente</option>
-              <option value="independente">Independente</option>
+              <option id="dependente">Dependente</option>
+              <option id="independente">Independente</option>
             </select>
             <input type="text" class="w-25 form-control" id="dadosRegressao">
-            <button class="btn btn-primary w-100 btnCorrelacao" value="null" id="regressao">Enviar</button>
+            <button class="btn btn-primary w-100 btnCorrelacao" id="null" id="regressao">Enviar</button>
           </div>
 
         </div>
@@ -256,6 +256,29 @@
     </div>
     <!-- fim div resultados -->
   </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="meuModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Qual variável gostaria de usar?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <input class="variavelPergunta" type="radio" name="variavel" id="discreta"> Discreta<br>
+            <input class="variavelPergunta" type="radio" name="variavel" id="continua"> Contínua<br>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button id="btnResposta" type="button" class="btn btn-primary">Enviar resposta</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src='https://www.gstatic.com/charts/loader.js' type='text/javascript'></script>
   <script src="../public/js/app.min.js"></script>
   <script src="../node_modules/jquery/dist/jquery.min.js"></script>
