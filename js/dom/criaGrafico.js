@@ -2,15 +2,16 @@ const Highcharts = require('highcharts');
 
 function createChart(variavel, fi, dados = null, array = null, classes = null) {
   const data = preparaDados(classes, array, variavel, fi);
-  // const responseLabels = preparaLabels(dados, array, variavel);
-  console.log(data);
-  const chart = defineGrafico(null, data, variavel);
-  // const width = 810 - responseLabels[1] * -2;
-  // data.push(0);
+  const chart = defineGrafico(data, variavel, array, classes);
+
   Highcharts.chart('myChart', chart);
-  // const widthChart = width.toString() + 'px';
-  // document.querySelector('.highcharts-container').style.width = widthChart;
-  // document.querySelector('.highcharts-credits').classList.add('d-none');
+  if (variavel == 'continua') {
+    const responseLabels = preparaLabels(classes, array, variavel);
+    const width = 810 - responseLabels[1] * -2;
+    const widthChart = width.toString() + 'px';
+    document.querySelector('.highcharts-container').style.width = widthChart;
+    document.querySelector('.highcharts-credits').classList.add('d-none');
+  }
 }
 
 
@@ -46,28 +47,27 @@ function preparaDados(classes, array, variavel, fi) {
   }
 }
 
-function preparaLabels(dados, array) {
+function preparaLabels(classes, array) {
   const response = [];
   const nomesLabels = [];
   const positionLabels = (723 / (array.quantClasse + 1) / 2) * -1;
-  for (var i = 0; i <= array.quantClasse; i++) {
-    nomesLabels.push(dados[0] + i * array.intervalo)
+  for (let i = 0; i <= array.quantClasse; i++) {
+    nomesLabels.push(classes['classe1'][0] + i * array.intervalo)
   }
   response.push(nomesLabels, positionLabels);
   return response;
 }
 
-function defineGrafico(responseLabels, data, variavel) {
+function defineGrafico(data, variavel, array, classes = null) {
   if (variavel == 'continua') {
+    const responseLabels = preparaLabels(classes, array, variavel);
+    data.push(0);
     return {
       chart: {
         type: 'column'
       },
       title: {
-        text: title
-      },
-      subtitle: {
-        text: 'Source: WorldClimate.com'
+        text: 'Gráfico Continua'
       },
       xAxis: {
         categories: responseLabels[0],
@@ -77,9 +77,6 @@ function defineGrafico(responseLabels, data, variavel) {
       },
       yAxis: {
         min: 0,
-        title: {
-          text: 'Rainfall (mm)'
-        }
       },
       tooltip: {
         headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
@@ -98,7 +95,7 @@ function defineGrafico(responseLabels, data, variavel) {
         }
       },
       series: [{
-        name: 'Tokyo',
+        name: 'Variavel',
         data: data,
       }]
     }
@@ -108,7 +105,7 @@ function defineGrafico(responseLabels, data, variavel) {
         type: 'column'
       },
       title: {
-        text: 'Monthly Average Rainfall'
+        text: 'Gráfico Discreta'
       },
       yAxis: {
         min: 0,
@@ -137,7 +134,7 @@ function defineGrafico(responseLabels, data, variavel) {
         pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> do total<br/>'
       },
       series: [{
-        name: 'Quantidade de acidente nas segundas-feiras',
+        name: 'Variável',
         colorByPoint: true,
         data: data,
       }]
@@ -151,7 +148,7 @@ function defineGrafico(responseLabels, data, variavel) {
         type: 'pie'
       },
       title: {
-        text: 'a'
+        text: 'Gráfico Qualitativa'
       },
       tooltip: {
         pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'

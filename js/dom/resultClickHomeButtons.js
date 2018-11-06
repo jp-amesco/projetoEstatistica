@@ -5,6 +5,7 @@ function resultClickHomeButtons (addEventButtons) {
   const menu =  document.querySelector('#menu-tabs');//div menu
   const insercaoDados = document.querySelector('.insercaoDados');
   const voltar = document.querySelector('#voltar');
+  const cr = document.querySelector('.cr');
   let abasMenu;
 
   for (let i = 0; i < btnInicio.length; i++) {
@@ -36,9 +37,7 @@ function resultClickHomeButtons (addEventButtons) {
   }
 
   voltar.addEventListener('click', function(e){
-    e.preventDefault;
-    document.querySelector('#btn-iniciais').classList.remove('d-none');
-    this.classList.add('d-none');
+    window.location.reload()
   });
 }
 

@@ -24,6 +24,7 @@ function btnscorrelacao() {
         const radio = document.getElementsByName('variavel');
         const select = document.querySelector('#select-variavel').value;
         const inputNewDado = parseInt(document.querySelector('#dadosRegressao').value);
+        document.querySelector('#div-regressao').classList.remove('d-none');
         dadosPreparados = preparaDadosCorrelacao.init(direita, esquerda, radio);
         dadosPreparados = inversamenteDiretamente.init(dadosPreparados);
         const calculos = calculosCorrelacaoRegressao.init(dadosPreparados.dependente, dadosPreparados.independente);
