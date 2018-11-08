@@ -17,7 +17,7 @@ function criaDadosTaelaContinua (classes, arrayIntervalo, dados) {
   let auxFacs = 0;
 
   for(prop in classes){
-    numerosClasses.push(arrayIntervalo.quantClasse);
+    numerosClasses.push(cont);
 
     ultimoElementoClasse = classes.classe1[0] + arrayIntervalo.intervalo * cont
     aux = primeiroElementoClasse + '   ------|   ' + ultimoElementoClasse;

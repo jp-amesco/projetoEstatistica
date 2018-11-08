@@ -34,6 +34,7 @@ const resultClickHomeButtons = require('./dom/resultClickHomeButtons.js');
 const calculosCorrelacaoRegressao = require('./correlacao/calculosCorrelacaoRegressao.js');
 const btnsCorrelacao = require('./dom/btnsCorrelacao.js');
 const geraModalPergunta = require('./dom/geraModal.js');
+const addEventProb = require('./dom/addEventProb.js');
 
 
 resultClickHomeButtons.init(addEventButtons);
@@ -90,6 +91,12 @@ for (let i = 0; i < tiposPesquisa.length; i++) {
         dadosTabela = criaDadosTabelaDiscreta.init(fi);
         criaTabela.init(dadosTabela, variavel);
         criaGrafico.init(variavel, fi);
+        document.querySelector('#desvioPadrao').classList.add('d-none');
+        document.querySelector('#coeficiente').classList.add('d-none');
+        document.querySelector('#media').classList.add('d-none');
+        // document.querySelector('#medidas').classList.add('d-none');
+        document.querySelector('#probabilidadeAba').classList.add('d-none');
+        document.querySelector('#cr').classList.add('d-none');
       }else if(variavel == 'discreta') {
         moda = modaQuantitativaDiscreta.init(fi);
         media = mediaQuantitativaDiscreta.init(dados);
@@ -111,7 +118,7 @@ for (let i = 0; i < tiposPesquisa.length; i++) {
         criaGrafico.init(variavel, null, dados, arrayIntervalo,classes);
       }
       let lastActive;
-      colocaValor.init(moda, media, mediana, desvioPadrao);
+      colocaValor.init(moda, media, mediana, desvioPadrao, (desvioPadrao / media * 100));
 
       const slider = document.querySelectorAll('.slider');
       const output = document.querySelectorAll('.output');
@@ -120,6 +127,11 @@ for (let i = 0; i < tiposPesquisa.length; i++) {
 
       document.querySelector('#menu-tabs').classList.remove('d-none');
       document.querySelector('#valores').classList.remove('d-none');
+      document.querySelector('.mediaProb').value = media;
+      document.querySelector('.desvioProb').value = desvioPadrao;
+      const allCheckBox = document.querySelectorAll('.allCheckBox');
+      addEventProb.init(allCheckBox);
+
       btnsCorrelacao.init()
 
       lastActive = 'tabela';

@@ -17,11 +17,11 @@ function preparaDadosCorrelacao(direita, esquerda, radio)
 
   for (let i = 0; i < direita.length; i++) {
     if (lado == 'direita') {
-      variaveis['dependente'].push(parseInt(direita[i].value));
-      variaveis['independente'].push(parseInt(esquerda[i].value));
+      variaveis['dependente'].push(parseFloat(direita[i].value));
+      variaveis['independente'].push(parseFloat(esquerda[i].value));
     } else {
-      variaveis['dependente'].push(parseInt(esquerda[i].value));
-      variaveis['independente'].push(parseInt(direita[i].value));
+      variaveis['dependente'].push(parseFloat(esquerda[i].value));
+      variaveis['independente'].push(parseFloat(direita[i].value));
     }
   }
   return variaveis;

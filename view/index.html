@@ -92,7 +92,7 @@
       <!-- fim da abas -->
 
       <!-- div da aba tabela -->
-      <div class="tabela row d-none">
+      <div class="tabela row">
         <!-- div com a tabela -->
         <div class="col-9">
           <table class="table table-striped table-dark"></table>
@@ -102,26 +102,30 @@
         <!-- div resultados -->
         <div id="valores" class="col-3 d-none">
           <!-- div moda -->
-          <div id="moda" class="col-md-3 title-valores">
-            <h3>Moda</h3>
+          <div id="moda" class="title-valores">
+            <h4>Moda</h4>
           </div>
           <!-- fim div moda -->
 
           <!-- div media -->
-          <div id="media" class="col-md-3 title-valores">
-            <h3>Média</h3>
+          <div id="media" class="title-valores">
+            <h4>Média</h4>
           </div>
           <!-- fim div meida -->
 
           <!-- div mediana -->
-          <div id="mediana" class="col-md-3 title-valores">
-            <h3>Mediana</h3>
+          <div id="mediana" class="title-valores">
+            <h4>Mediana</h4>
           </div>
           <!-- fim div mediana -->
 
           <!-- div desvio padrão -->
-          <div id="desvioPadrao" class="col-md-3 title-valores">
-            <h3>Desvio Padrão</h3>
+          <div id="desvioPadrao" class="title-valores">
+            <h4>Desvio Padrão</h4>
+          </div>
+
+          <div id="coeficiente" class="title-valores">
+            <h4>Coeficiente de Variação</h4>
           </div>
           <!-- fim div desvio padrão -->
         </div>
@@ -180,22 +184,84 @@
       <!-- fim div aba medidas separatrizes -->
 
       <!-- div probabilidade -->
-      <div class="probabilidadeAba">
-        <select class="custom-select">
-          <option>Distribuição Binomial</option>
-          <option>Distribuição Normal</option>
-          <option>Distribuição Uniforme</option>
-        </select>
-        <div class="row">
-          <div class="col-6">
+      <div class="probabilidadeAba d-none">
+        <div class="col-6">
 
-            <label for="">Média</label>
-            <input type="text" class="form-control">
+          <select id="selectProb" class="custom-select">
+            <option>Distribuição Normal</option>
+            <option>Distribuição Binomial</option>
+            <option>Distribuição Uniforme</option>
+          </select>
+
+          <div class="mediaDesvio row" style="margin-top: 20px;">
+
+            <div class="col-6">
+              <label for="">Média</label>
+              <input type="text" class="mediaProb form-control">
+            </div>
+
+            <div class="col-6">
+              <label for="">Desvio Padrão</label>
+              <input type="text" class="desvioProb form-control">
+            </div>
           </div>
 
-          <div class="col-6">
-            <label for="">Desvio Padrão</label>
-            <input type="text" class="form-control">
+          <div class="row checkboxProb" style="margin-top: 20px;">
+            <div class="col-4">
+              <label for="maior">Maior Que</label>
+              <input type="checkbox" class="allCheckBox" id="maiorCheck" name="maiorque">
+            </div>
+            <div class="col-4">
+              <label for="menor">Menor Que</label>
+              <input type="checkbox" class="allCheckBox" id="menorCheck" name="menorque">
+            </div>
+            <div class="col-4">
+              <label for="entre">Entre</label>
+              <input type="checkbox" class="allCheckBox" id="entreCheck" name="entre">
+            </div>
+          </div>
+          <div class="maiorMenorEntre">
+            <div class="row d-none maiorque div-linha-prob" >
+              <div class="div-input-prob col-3">
+               <input type="text" value="maior que" class="desabilitado form-control" disabled="disabled">
+              </div>
+
+              <div class="div-input-prob col-9">
+                <input type="text" id="maior" class="value input-dados-prob form-control">
+              </div>
+            </div>
+            <div class="row menorque d-none div-linha-prob">
+              <div class="div-input-prob col-3">
+               <input type="text" value="menor que" class="desabilitado form-control" disabled="disabled">
+              </div>
+
+              <div class="div-input-prob col-9">
+                <input type="text" id="menor" class="value input-dados-prob form-control">
+              </div>
+            </div>
+
+            <div class="row d-none entre d-none div-linha-prob">
+
+              <div class="div-input-prob col-3">
+               <input type="text" value="entre" class="desabilitado form-control" disabled="disabled">
+              </div>
+
+              <div class="div-input-prob col-4">
+                <input type="text" id="entre" class="value desabilitado input-dados-prob form-control">
+              </div>
+
+              <div class="div-input-prob col-1">
+               <input type="text" value="e" class="value desabilitado form-control" disabled="disabled">
+              </div>
+
+              <div class="div-input-prob col-4">
+                <input type="text" id="entre2" class="value input-dados-prob form-control">
+              </div>
+            </div>
+
+            <div class="row d-none btnProb div-linha-prob">
+              <button id="btnProb" class="btn btn-primary w-100">Enviar</button>
+            </div>
           </div>
         </div>
       </div>

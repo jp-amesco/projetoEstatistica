@@ -47,8 +47,8 @@ function normal(media,desvio_padrao,tipo,ponto,ponto2 = null){
 }
 
 function buscaItem(item){
-	const obj = 
-	'{' + 
+	const obj =
+	'{' +
 		'"0.00":"0.0000","0.01":"0.0040","0.02":"0.0080","0.03":"0.0120","0.04":"0.0160","0.05":"0.0199","0.06":"0.0239","0.07":"0.0279","0.08":"0.0319","0.09":"0.0359",'+
 		'"0.10":"0.0398","0.11":"0.0438","0.12":"0.0478","0.13":"0.0517","0.14":"0.0557","0.15":"0.0596","0.16":"0.0636","0.17":"0.0675","0.18":"0.0714","0.19":"0.0753",'+
 		'"0.20":"0.0793","0.21":"0.0832","0.22":"0.0871","0.23":"0.0910","0.24":"0.0948","0.25":"0.0987","0.26":"0.1026","0.27":"0.1064","0.28":"0.1103","0.29":"0.1141",'+
@@ -93,7 +93,7 @@ function buscaItem(item){
 
 	const itens = JSON.parse(obj);
 
-	return itens[item]; 
+	return itens[item];
 }
 
 function calculaPosicao(media, desvio_padrao, ponto){
@@ -103,3 +103,5 @@ function calculaPosicao(media, desvio_padrao, ponto){
 	}
 	return z.toFixed(2);
 }
+
+exports.init = normal;

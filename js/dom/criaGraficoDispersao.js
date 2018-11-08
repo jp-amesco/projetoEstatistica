@@ -38,26 +38,30 @@ function preparaDadosParaGraficoRegressao(data, dados, calculos, select, regress
     return [firstPoint, lastPoint];
   }
 
-  if (select == 'dependente') {
+  if (select == 'Dependente') {
     secondPoint = [
       regressao.init(calculos, select, newDado),
       newDado,
     ]
     data.push(secondPoint);
-    if (newDado < dados.dependente[0]) {
+    if(newDado > dados.dependente[0] && newDado < dados.dependente[dados.dependente.length - 1]){
+      return [firstPoint, lastPoint];
+    }else if (newDado < dados.dependente[0]) {
       return [secondPoint, lastPoint];
     }
-    return [firstPoint, secondPoint];
+    return [firstPoint, secondPoint]
   }
 
   secondPoint = [
     newDado,
-    regressao.init(calculos, select, newDado),
+    regressao.init(calculos, select, newDado)
   ];
   data.push(secondPoint);
-  console.log(relacaoVariaveis);
+
   if (relacaoVariaveis == 'inversamente') {
-    if (newDado > dados.independente[0]) {
+    if (newDado < dados.independente[0] && newDado > dados.independente[dados.independente.length - 1]) {
+      return [firstPoint, lastPoint];
+    }else if (newDado > dados.independente[0]) {
       return [secondPoint, lastPoint];
     } else if(newDado < dados.independente[dados.independente.length - 1]) {
       return [firstPoint, secondPoint];
@@ -77,10 +81,10 @@ function optionsCorrelacao(data) {
       zoomType: 'xy'
     },
     title: {
-      text: 'Height Versus Weight of 507 Individuals by Gender'
+      text: 'variavel1 + x + variavle2'
     },
     subtitle: {
-      text: 'Source: Heinz  2003'
+      text: 'Gráfico de dispersão'
     },
     xAxis: {
       title: {
@@ -139,19 +143,13 @@ function optionsCorrelacao(data) {
 }
 
 function optionsRegressao(data, dataRegressao) {
-  // let novaData = [];
-  // for (var i = 0; i < data.length; i++) {
-  //   novaData.push(data[i][1]);
-  // }
+  console.log(dataRegressao);
   return {
-    xAxis: {
-      min: 0,
-    },
-    yAxis: {
-      min: 0
-    },
     title: {
-      text: 'Scatter plot with regression line'
+      text: "variavel1 + x + variavle2"
+    },
+    subtitle:{
+      text: 'Gráfico projeção futura'
     },
     series: [{
       type: 'line',
@@ -170,6 +168,9 @@ function optionsRegressao(data, dataRegressao) {
       type: 'scatter',
       name: 'Observations',
       data: data,
+      tooltip:{
+        pointFormat: 'variavle1{point.x}, variavle1{point.y}'
+      },
       marker: {
         radius: 4
       }

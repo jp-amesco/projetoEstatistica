@@ -1,4 +1,4 @@
-function colocaValor(moda, media, mediana, desvioPadrao) {
+function colocaValor(moda, media, mediana, desvioPadrao, coeficiente) {
   let paragrafo;
   let text;
   const linhaValores = document.querySelectorAll('.title-valores');
@@ -16,10 +16,6 @@ function colocaValor(moda, media, mediana, desvioPadrao) {
         break;
 
       case 'media':
-        //const mediaParagrafo = document.querySelector('#mediaParagrafo');
-        //if (mediaParagrafo) {
-          //linhaValores[i].removeChild(mediaParagrafo);
-        //}
         paragrafo = document.createElement('p');
         text = document.createTextNode(media);
         paragrafo.appendChild(text);
@@ -27,10 +23,6 @@ function colocaValor(moda, media, mediana, desvioPadrao) {
         break;
 
       case 'mediana':
-        //const medianaParagrafo = document.querySelector('#medianaParagrafo');
-        //if (medianaParagrafo) {
-          //linhaValores[i].removeChild(medianaParagrafo);
-        //}
         paragrafo = document.createElement('p');
         text = document.createTextNode(mediana);
         paragrafo.appendChild(text);
@@ -38,15 +30,17 @@ function colocaValor(moda, media, mediana, desvioPadrao) {
         break;
 
       case 'desvioPadrao':
-        //const desvioParagrafo = document.querySelector('#desvioParagrafo');
-        //if (desvioParagrafo) {
-          //linhaValores[i].removeChild(desvioParagrafo);
-        //}
         paragrafo = document.createElement('p');
         text = document.createTextNode(desvioPadrao);
         paragrafo.appendChild(text);
         paragrafo.id = 'desvioParagrafo'
         break;
+
+      case 'coeficiente':
+        paragrafo = document.createElement('p');
+        text = document.createTextNode(coeficiente.toFixed(2));
+        paragrafo.appendChild(text);
+        paragrafo.id = 'coeficienteParagrafo';
     }
     linhaValores[i].appendChild(paragrafo);
   }

@@ -1,4 +1,5 @@
 const btnsCorrelacao = require('./btnsCorrelacao.js');
+const addEventsProb = require('./addEventProb.js');
 
 function resultClickHomeButtons (addEventButtons) {
   const btnInicio = document.querySelectorAll('.btn-inicio');
@@ -22,6 +23,9 @@ function resultClickHomeButtons (addEventButtons) {
           break;
         case 'probabilidade':
           menu.classList.remove('d-none');
+          const allCheckBox = document.querySelectorAll('.allCheckBox');
+          document.querySelector('.probabilidadeAba').classList.remove('d-none');
+          addEventsProb.init(allCheckBox);
           abasMenu = document.querySelectorAll('.not-probability');
           addEventButtons.init(abasMenu, menu, insercaoDados, this.id);
           break;

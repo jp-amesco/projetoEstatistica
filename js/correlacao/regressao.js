@@ -7,7 +7,7 @@ function regressao(calculos, procuraVar, valorVar) {
   valorVar = parseInt(valorVar);
   let result = 0;
 
-  if (procuraVar == 'independente') {
+  if (procuraVar == 'Independente') {
     result = (a * valorVar) + b;
     return Math.round(result);
   }
