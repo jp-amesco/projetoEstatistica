@@ -35,6 +35,9 @@ const calculosCorrelacaoRegressao = require('./correlacao/calculosCorrelacaoRegr
 const btnsCorrelacao = require('./dom/btnsCorrelacao.js');
 const geraModalPergunta = require('./dom/geraModal.js');
 const addEventProb = require('./dom/addEventProb.js');
+const modaKing = require('./moda/modaKing.js');
+const modaCzuber = require('./moda/modaCzuber.js');
+const modaPearson = require('./moda/modaPearson.js');
 
 
 resultClickHomeButtons.init(addEventButtons);
