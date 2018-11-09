@@ -40,3 +40,5 @@ function coeficienteVariacao(a,b){
 	let coef = ((desvio / med)*100);
 	return coef.toFixed(2);
 }
+
+exports.init = uniforme;

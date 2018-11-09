@@ -184,7 +184,7 @@
       <!-- fim div aba medidas separatrizes -->
 
       <!-- div probabilidade -->
-      <div class="probabilidadeAba d-none">
+      <div class="row probabilidadeAba d-none" style="margin-top: 15px;">
         <div class="col-6">
 
           <select id="selectProb" class="custom-select">
@@ -206,7 +206,22 @@
             </div>
           </div>
 
-          <div class="row checkboxProb" style="margin-top: 20px;">
+          <div class="d-none uniforme" style="margin-top: 15px;">
+
+            <div class="row">
+              <div class="col-6">
+                <label for="pontmin">Ponto Minimo</label>
+                <input type="text" id="pontomin"  class="form-control">
+              </div>
+
+              <div class="col-6">
+                <label for="pontmax">Ponto Máximo</label>
+                <input type="text" id="pontomax"  class="form-control">
+              </div>
+            </div>
+          </div>
+
+          <div class="row checkboxProb" style="margin-top: 15px;">
             <div class="col-4">
               <label for="maior">Maior Que</label>
               <input type="checkbox" class="allCheckBox" id="maiorCheck" name="maiorque">
@@ -264,6 +279,35 @@
             </div>
           </div>
         </div>
+
+
+        <div class="col-6">
+        <div class="row">
+
+          <div class="col-6">
+            <h5 class="title">Probabilidade</h5>
+            <p id="resultadoProb" style="font-size: 20px;"></p>
+          </div>
+
+          <div class="col-6">
+            <h5 class="title">Média</h5>
+            <p id="mediaUniforme" style="font-size: 20px;"></p>
+          </div>
+        </div>
+
+        <div class="row">
+
+          <div class="col-6">
+            <h5 class="title">Desvio Padrão</h5>
+            <p id="desvioUniforme" style="font-size: 20px;"></p>
+          </div>
+
+          <div class="col-6">
+            <h5 class="title">Coeficiente de Variação</h5>
+            <p id="coeficienteUniforme" style="font-size: 20px;"></p>
+          </div>
+        </div>
+      </div>
       </div>
       <!-- fim div probabilidade -->
 
