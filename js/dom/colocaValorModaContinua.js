@@ -1,4 +1,5 @@
 function colocaValorModaContinua(moda, modaKing, ModaCzuber, modaPearson){
+  document.querySelector('#modaContinuaParagrafo').innerHTML = moda;
   document.querySelector('#modaContinuaSelect').addEventListener('change', function(e) {
     e.preventDefault;
     if (this.value == 'moda') {

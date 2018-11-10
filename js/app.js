@@ -80,11 +80,11 @@ for (let i = 0; i < tiposPesquisa.length; i++) {
       let arrayIntervalo;
       let classes;
       //verifica qual resposta da função que identifica a variavel
-      if (variavel == 'pergunta') {
+      // if (variavel == 'pergunta') {
         //se for pergunta, chama a função para gera uma pergunta ao usuario,
         //pedindo que ele informe qual a variavel será usada
-        variavel = geraModalPergunta.init();
-      }
+        // variavel = geraModalPergunta.init();
+      // }
       if (variavel == 'qualitativa') {
         //se a variavel for moda, chama os calculos respectivos a essa variavel,
         //enviando a frequancia como parametro
@@ -98,6 +98,7 @@ for (let i = 0; i < tiposPesquisa.length; i++) {
         document.querySelector('#media').classList.add('d-none');
         // document.querySelector('#medidas').classList.add('d-none');
         document.querySelector('#probabilidadeAba').classList.add('d-none');
+        document.querySelector('#modaDiscreta').classList.remove('d-none');
         document.querySelector('#cr').classList.add('d-none');
       }else if(variavel == 'discreta') {
         moda = modaQuantitativaDiscreta.init(fi);

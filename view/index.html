@@ -245,18 +245,53 @@
             </div>
           </div>
 
-          <div class="row checkboxProb" style="margin-top: 15px;">
-            <div class="col-4">
-              <label for="maior">Maior Que</label>
-              <input type="checkbox" class="allCheckBox" id="maiorCheck" name="maiorque">
+          <div class="d-none binomial" style="margin-top: 15px;">
+
+            <div class="row">
+              <div class="col-4">
+                <label for="tot">Quantidade Total</label>
+                <input type="text" id="tot"  class="form-control">
+              </div>
+
+              <div class="col-2">
+                <label for="parte">Parte</label>
+                <input type="text" id="parte"  class="form-control">
+              </div>
+
+               <div class="col-6">
+                <label for="qntPesq">Quantidade Pesquisada</label>
+                <input type="text" id="qntPesq"  class="form-control">
+              </div>
             </div>
-            <div class="col-4">
-              <label for="menor">Menor Que</label>
-              <input type="checkbox" class="allCheckBox" id="menorCheck" name="menorque">
+          </div>
+          <div class="row checkboxProb" style="margin: 15px 0 25px;">
+            <div class="col-3" style="padding: 0">
+              <label for="maiorCheck" class="labelProb">Maior Que</label>
+              <label for="maiorCheck" class="labelInput">
+                <input type="checkbox" class="allCheckBox" id="maiorCheck" name="maiorque">
+                <span class="checkmark"></span>
+              </label>
             </div>
-            <div class="col-4">
-              <label for="entre">Entre</label>
-              <input type="checkbox" class="allCheckBox" id="entreCheck" name="entre">
+            <div class="col-3" style="padding: 0">
+              <label for="menorCheck" class="labelProb">Menor Que</label>
+              <label for="menorCheck" class="labelInput">
+                <input type="checkbox" class="allCheckBox" id="menorCheck" name="menorque">
+                <span class="checkmark"></span>
+              </label>
+            </div>
+            <div class="col-4 d-none" id="divExatamente" style="padding: 0">
+              <label for="exatamenteCheck" class="labelProb">Exatamente</label>
+              <label for="exatamenteCheck" class="labelInput">
+                <input type="checkbox" class="allCheckBox" id="exatamenteCheck" name="exatamente">
+                <span class="checkmark"></span>
+              </label>
+            </div>
+            <div class="col-2" style="padding: 0">
+              <label for="entreCheck" class="labelProb">Entre</label>
+              <label for="entreCheck" class="labelInput">
+                <input type="checkbox" class="allCheckBox" id="entreCheck" name="entre">
+                <span class="checkmark"></span>
+              </label>
             </div>
           </div>
           <div class="maiorMenorEntre">
@@ -269,6 +304,17 @@
                 <input type="text" id="maior" class="value input-dados-prob form-control">
               </div>
             </div>
+
+            <div class="row d-none exatamente div-linha-prob" >
+              <div class="div-input-prob col-3">
+               <input type="text" value="Exatamente" class="desabilitado form-control" disabled="disabled">
+              </div>
+
+              <div class="div-input-prob col-9">
+                <input type="text" id="exatamente" class="value input-dados-prob form-control">
+              </div>
+            </div>
+
             <div class="row menorque d-none div-linha-prob">
               <div class="div-input-prob col-3">
                <input type="text" value="menor que" class="desabilitado form-control" disabled="disabled">
@@ -306,27 +352,27 @@
 
 
         <div class="col-6">
-        <div class="row">
+        <div class="row text-center">
 
-          <div class="col-6">
+          <div class="col-5 panel">
             <h5 class="title">Probabilidade</h5>
             <p id="resultadoProb" style="font-size: 20px;"></p>
           </div>
 
-          <div class="col-6">
+          <div class="col-5 panel d-none div-media">
             <h5 class="title">Média</h5>
             <p id="mediaUniforme" style="font-size: 20px;"></p>
           </div>
         </div>
 
-        <div class="row">
+        <div class="row text-center">
 
-          <div class="col-6">
+          <div class="col-5 panel d-none div-desvio">
             <h5 class="title">Desvio Padrão</h5>
             <p id="desvioUniforme" style="font-size: 20px;"></p>
           </div>
 
-          <div class="col-6">
+          <div class="col-5 panel d-none div-coeficiente">
             <h5 class="title">Coeficiente de Variação</h5>
             <p id="coeficienteUniforme" style="font-size: 20px;"></p>
           </div>

@@ -1,11 +1,11 @@
 //result = probabilidade | media | desvio padrao
 function binomial(n,p,q,k_min,k_max){
-	let final = 0;
-	let result = [];
-	let analise_combinatoria =0;
-	for(let i = k_min; i <= k_max; i++){
-		analise_combinatoria = combinatoria(n,i);
-		final += (analise_combinatoria * Math.pow(p,i) * Math.pow(q,(n-i))) * 100;
+  let final = 0;
+  let result = [];
+  let analise_combinatoria =0;
+  for(let i = k_min; i <= k_max; i++){
+    analise_combinatoria = combinatoria(n,i);
+    final += (analise_combinatoria * Math.pow(p,i) * Math.pow(q,(n-i))) * 100;
 	}
 	result.push(final.toFixed(2));
 	result.push(media(n,p).toFixed(2));
@@ -49,3 +49,5 @@ function media(n,p){
 function desvioPadrao(n,p,q){
 	return Math.sqrt((n*p*q));
 }
+
+exports.init = binomial;

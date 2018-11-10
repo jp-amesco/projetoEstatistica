@@ -9,13 +9,13 @@ function identificaVariavel(dados){
       vetCont.push(dados[i]);
     }
   }
-  if (vetCont.length < 7) {
+  if (vetCont.length < 8) {
     return 'discreta';
   }
 
-  if (vetCont.length >= 7 && vetCont.length <= 10) {
-    return 'pergunta'
-  }
+  // if (vetCont.length >= 7 && vetCont.length <= 10) {
+  //   return 'pergunta'
+  // }
 
   return 'continua';
 }
