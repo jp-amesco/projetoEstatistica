@@ -143,7 +143,6 @@ function optionsCorrelacao(data) {
 }
 
 function optionsRegressao(data, dataRegressao) {
-  console.log(dataRegressao);
   return {
     title: {
       text: "variavel1 + x + variavle2"

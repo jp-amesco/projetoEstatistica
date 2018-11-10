@@ -38,8 +38,7 @@ const addEventProb = require('./dom/addEventProb.js');
 const modaKing = require('./moda/modaKing.js');
 const modaCzuber = require('./moda/modaCzuber.js');
 const modaPearson = require('./moda/modaPearson.js');
-
-
+const colocaValorModaContinua = require('./dom/colocaValorModaContinua.js');
 resultClickHomeButtons.init(addEventButtons);
 const inputDados = document.querySelector('#dados');
 const inputArquivo = document.querySelector('#arquivo');
@@ -108,6 +107,8 @@ for (let i = 0; i < tiposPesquisa.length; i++) {
         dadosTabela = criaDadosTabelaDiscreta.init(fi);
         criaTabela.init(dadosTabela, variavel);
         criaGrafico.init(variavel, fi);
+        document.querySelector('#modaDiscreta').classList.remove('d-none');
+        document.querySelector('#modaContinua').classList.add('d-none');
       }else if(variavel == 'continua'){
         arrayIntervalo = intervalo.init(dados);
         facs = calculaFacContinua.init(dados, arrayIntervalo);
@@ -117,8 +118,14 @@ for (let i = 0; i < tiposPesquisa.length; i++) {
         classes = calculaClassesContinua.init(dados, arrayIntervalo);
         desvioPadrao = desvioPadraoContinua.init(dados, media, tipoDados, arrayIntervalo, classes);
         dadosTabela = criaDadosTabelaContinua.init(classes, arrayIntervalo, dados);
+        resultModaCzuber = modaCzuber.init(dados, arrayIntervalo, classes);
+        resultModaKing = modaKing.init(dados, arrayIntervalo, classes);
+        resultModaPearson = modaPearson.init(mediana, media);
         criaTabela.init(dadosTabela, variavel);
         criaGrafico.init(variavel, null, dados, arrayIntervalo,classes);
+        colocaValorModaContinua.init(moda, resultModaPearson, resultModaKing, resultModaCzuber);
+        document.querySelector('#modaDiscreta').classList.add('d-none')
+        document.querySelector('#modaContinua').classList.remove('d-none')
       }
       let lastActive;
       colocaValor.init(moda, media, mediana, desvioPadrao, (desvioPadrao / media * 100));
