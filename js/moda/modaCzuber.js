@@ -29,7 +29,7 @@ function modaCzuber (dados, array, classes) {
   }
 
   resultModaCzuber = todosIntervalos[classePesquisada-1] + ((fi[classeModal - 1] - fiAnt) /
-    ((fi[classeModal - 1] - fiAnt) + (fi[classeModal - 1] - fi[classePesquisada]))) + array.intervalo;
+    ((fi[classeModal - 1] - fiAnt) + (fi[classeModal - 1] - fi[classePesquisada]))) * array.intervalo;
 
   return resultModaCzuber.toFixed(2)
 }

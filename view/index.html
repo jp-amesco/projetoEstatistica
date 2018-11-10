@@ -4,7 +4,7 @@
   <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="../public/css/app.css">
   <meta charset="utf-8">
-  <title>Minimo necessário</title>
+  <title>Statisticator</title>
 </head>
 
 <body>
@@ -248,19 +248,14 @@
           <div class="d-none binomial" style="margin-top: 15px;">
 
             <div class="row">
-              <div class="col-4">
-                <label for="tot">Quantidade Total</label>
-                <input type="text" id="tot"  class="form-control">
-              </div>
-
-              <div class="col-2">
-                <label for="parte">Parte</label>
+              <div class="col-6">
+                <label for="parte">Sucesso</label>
                 <input type="text" id="parte"  class="form-control">
               </div>
 
-               <div class="col-6">
-                <label for="qntPesq">Quantidade Pesquisada</label>
-                <input type="text" id="qntPesq"  class="form-control">
+              <div class="col-6">
+                <label for="tot">Fracasso</label>
+                <input type="text" id="tot"  class="form-control">
               </div>
             </div>
           </div>
@@ -385,10 +380,14 @@
       <div class="cr d-none row">
         <div class="col-4">
           <div class="row">
-            <h3>Resultado: <span id='resultCorrelacao'></span></h3>
+            <h3 class="d-none titulo-resultado-dispersao" >Dispersão: <span id='resultCorrelacao'></span></h3>
+            <div class="input-group div-nomes">
+              <input class="form-control" type="text" placeholder="nome da variavel independente" id="nomeIndependente">
+              <input class="form-control" type="text" placeholder="nome da variavel dependente" id="nomeDependente">
+            </div>
           </div>
           <div class="row">
-            <h4>Seleciona a variavel dependente</h4>
+            <h6>Seleciona a variavel dependente</h6>
           </div>
           <div class="row input-group">
             <div class="col-6 bg-secondary text-center w-50">
@@ -428,7 +427,7 @@
 
         </div>
         <div class="col-8 text-center">
-          <h1>Grafico</h1>
+          <!-- <h1>Grafico</h1> -->
           <div id="grafico-dispersao"></div>
         </div>
       </div>

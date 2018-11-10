@@ -1,14 +1,18 @@
 const Highcharts = require('highcharts');
 
 function criaGraficodispersao (dados, calculos, tipo, regressao, select, newDado, relacaoVariaveis) {
+  let nomeDependente = document.querySelector('#nomeDependente').value;
+  let nomeIndependente = document.querySelector('#nomeIndependente').value;
+  document.querySelector('.div-nomes').classList.add('d-none');
+  document.querySelector('.titulo-resultado-dispersao').classList.remove('d-none');
   let chart;
   let dataReta;
   const data = preparaDadosParaGraficoCorrelacao(dados);
   if (tipo == 'correlacao') {
-    chart = optionsCorrelacao(data);
+    chart = optionsCorrelacao(data, nomeDependente, nomeIndependente);
   } else {
     dataRegressao = preparaDadosParaGraficoRegressao(data, dados, calculos, select, regressao, relacaoVariaveis, newDado)
-    chart = optionsRegressao(data, dataRegressao);
+    chart = optionsRegressao(data, dataRegressao, nomeDependente, nomeIndependente);
   }
   Highcharts.chart('grafico-dispersao', chart);
 }
@@ -74,31 +78,31 @@ function preparaDadosParaGraficoRegressao(data, dados, calculos, select, regress
   return [firstPoint, secondPoint];
 }
 
-function optionsCorrelacao(data) {
+function optionsCorrelacao(data, nomeDependente, nomeIndependente) {
   return {
     chart: {
       type: 'scatter',
       zoomType: 'xy'
     },
     title: {
-      text: 'variavel1 + x + variavle2'
+      text: nomeIndependente + " x " + nomeDependente
     },
     subtitle: {
       text: 'Gráfico de dispersão'
     },
     xAxis: {
-      title: {
-        enabled: true,
-        text: 'Height (cm)'
-      },
+      // title: {
+        // enabled: true,
+        // text: 'Height (cm)'
+      // },
       startOnTick: true,
       endOnTick: true,
       showLastLabel: true
     },
     yAxis: {
-      title: {
-        text: 'Weight (kg)'
-      }
+      // title: {
+        // text: 'Weight (kg)'
+      // }
     },
     legend: {
       layout: 'vertical',
@@ -130,22 +134,22 @@ function optionsCorrelacao(data) {
         },
         tooltip: {
           headerFormat: '<b>{series.name}</b><br>',
-          pointFormat: '{point.x} cm, {point.y} kg'
+          pointFormat: nomeIndependente + ': {point.x}, '+ nomeDependente +': {point.y}'
         }
       }
     },
     series: [{
-      name: 'Female',
-      color: 'rgba(223, 83, 83, .5)',
+      name: nomeIndependente + " x " + nomeDependente,
+      color: 'rgb(0, 0, 0)',
       data: data
     }]
   }
 }
 
-function optionsRegressao(data, dataRegressao) {
+function optionsRegressao(data, dataRegressao, nomeDependente, nomeIndependente) {
   return {
     title: {
-      text: "variavel1 + x + variavle2"
+      text: nomeIndependente + " x " + nomeDependente
     },
     subtitle:{
       text: 'Gráfico projeção futura'
@@ -165,10 +169,10 @@ function optionsRegressao(data, dataRegressao) {
       enableMouseTracking: false
     }, {
       type: 'scatter',
-      name: 'Observations',
+      name: nomeIndependente + " x " + nomeDependente,
       data: data,
       tooltip:{
-        pointFormat: 'variavle1{point.x}, variavle1{point.y}'
+        pointFormat: nomeIndependente + ': {point.x}, '+ nomeDependente +': {point.y}'
       },
       marker: {
         radius: 4

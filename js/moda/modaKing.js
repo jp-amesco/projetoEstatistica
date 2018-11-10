@@ -23,7 +23,7 @@ function modaKing (dados, array, classes) {
   }
 
   resultModaKing = todosIntervalos[classePesquisada - 1] + (fi[classePesquisada] /
-    (fiAnt + fi[classePesquisada])) + array.intervalo;
+    (fiAnt + fi[classePesquisada])) * array.intervalo;
 
   return resultModaKing.toFixed(2);
 }
