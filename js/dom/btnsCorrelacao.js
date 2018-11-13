@@ -31,10 +31,10 @@ function btnscorrelacao() {
         const resultCorrelacao = correlacao.init(calculos);
         const formulaRegressao = regressao.init(calculos,select,inputNewDado,'formula');
         document.querySelector('#resultCorrelacao').innerHTML = resultCorrelacao + '%';
-        if(select=='Dependente'){
-          document.querySelector('#formulaRegressao').innerHTML = "Y = " + formulaRegressao[0] + " * " + formulaRegressao[2] + " + " + formulaRegressao[1];
+        if(select=='Independente'){
+          document.querySelector('#formulaRegressao').innerHTML = "Y = " + formulaRegressao[0] + " * " + formulaRegressao[2] + " + " + formulaRegressao[1] + '(x=' + formulaRegressao[2] + ')';
         }else{
-          document.querySelector('#formulaRegressao').innerHTML = formulaRegressao[3] + " = " + formulaRegressao[0] + " * X + " + formulaRegressao[1];
+          document.querySelector('#formulaRegressao').innerHTML = formulaRegressao[3] + " = " + formulaRegressao[0] + " * X + " + formulaRegressao[1] + '(x=' + formulaRegressao[3] + ')';
         }
         criaGraficoDispersao.init(dadosPreparados, calculos, this.id, regressao, select, inputNewDado, dadosPreparados.relacaoVariavel);
       }
