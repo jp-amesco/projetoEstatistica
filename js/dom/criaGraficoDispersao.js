@@ -28,6 +28,7 @@ function preparaDadosParaGraficoCorrelacao(dados) {
 }
 
 function preparaDadosParaGraficoRegressao(data, dados, calculos, select, regressao, relacaoVariaveis, newDado = null){
+  document.querySelector('.titulo-formula-regressao').classList.remove('d-none');
   let secondPoint;
   const firstPoint = [
     regressao.init(calculos, 'dependente', dados.dependente[0]),

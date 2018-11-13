@@ -29,7 +29,13 @@ function btnscorrelacao() {
         dadosPreparados = inversamenteDiretamente.init(dadosPreparados);
         const calculos = calculosCorrelacaoRegressao.init(dadosPreparados.dependente, dadosPreparados.independente);
         const resultCorrelacao = correlacao.init(calculos);
+        const formulaRegressao = regressao.init(calculos,select,inputNewDado,'formula');
         document.querySelector('#resultCorrelacao').innerHTML = resultCorrelacao + '%';
+        if(select=='Dependente'){
+          document.querySelector('#formulaRegressao').innerHTML = "Y = " + formulaRegressao[0] + " * " + formulaRegressao[2] + " + " + formulaRegressao[1];
+        }else{
+          document.querySelector('#formulaRegressao').innerHTML = formulaRegressao[3] + " = " + formulaRegressao[0] + " * X + " + formulaRegressao[1];
+        }
         criaGraficoDispersao.init(dadosPreparados, calculos, this.id, regressao, select, inputNewDado, dadosPreparados.relacaoVariavel);
       }
     });
