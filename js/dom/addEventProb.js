@@ -88,9 +88,9 @@ function addEventProb(allCheckBox){
       document.querySelector('#coeficienteUniforme').innerHTML = response[3] + '%';
       response = response[0];
     } else {
+      const n = parseFloat(document.querySelector('#teste').value)
       const fracasso = parseFloat(document.querySelector('#tot').value);
       const sucesso = parseFloat(document.querySelector('#parte').value);
-      const qntPesq = fracasso + sucesso;
       const exatamente = parseFloat(document.querySelector('#exatamente').value);
       const tot = sucesso + fracasso;
       const sucessoPercent = (sucesso / tot).toFixed(2);
@@ -99,13 +99,13 @@ function addEventProb(allCheckBox){
         ponto2 = ponto1 - 1;
         ponto1 = 0;
       } else if (tipoEnviar == 'maior') {
-        ponto2 = qntPesq;
+        ponto2 = n;
         ponto1 = ponto1 + 1;
       } else if (tipoEnviar == 'exatamente') {
         ponto1 = exatamente;
         ponto2 = exatamente;
       }
-      response = binomial.init(qntPesq, sucessoPercent, fracassoPercent, ponto1, ponto2);
+      response = binomial.init(n, sucessoPercent, fracassoPercent, ponto1, ponto2);
       response = response[0];
     }
     document.querySelector('#resultadoProb').innerHTML = response + '%';
